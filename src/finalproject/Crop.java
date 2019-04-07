@@ -11,14 +11,14 @@ package finalproject;
 public class Crop {
 
     private int itemId;
-    private String fieldSection;
+    private char fieldSection;
     private String itemName;
     private String itemType;
     private double itemQuantity;
     private boolean itemAvailability;
     private double pricePerPound;
 
-    public Crop(int itemId, String name, String itemType, double itemQuantity, boolean itemAvailability, double pricePerPound, String fieldSection) {
+    public Crop(int itemId, String name, String itemType, double itemQuantity, boolean itemAvailability, double pricePerPound, char fieldSection) {
         this.itemId = itemId;
         this.itemName = name;
         this.itemType = itemType;
