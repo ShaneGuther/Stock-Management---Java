@@ -44,9 +44,9 @@ public class FileManagement {
             char fieldSect = fields[6].charAt(0);
             //char fieldSect = fields[3].charAt(0);
             //char fieldSect = 'a';
-            Crop newCrop = new Crop(id, name, type);
+            //Crop newCrop = new Crop(id, name, type);
            // cropList.add(newCrop);
-            System.out.println(newCrop.toString());
+           // System.out.println(newCrop.toString());
             
             
             
@@ -61,5 +61,5 @@ public class FileManagement {
         }
     }    
 }
-    }
-}
+    
+

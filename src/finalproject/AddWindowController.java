@@ -38,6 +38,8 @@ public class AddWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
+    @FXML
+    private FXMLDocumentController doc;
 
     /**
      * Initializes the controller class.
@@ -45,17 +47,22 @@ public class AddWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        itemID
-        itemID.setText(cropList.get(cropList.size()));
+        //doc.cropList.get(doc.cropList.size()).setItemId(doc.cropList.size());
+        //tfID.setText(doc.cropList.get(doc.cropList.size()).toString());
     }    
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
-           
+    doc.cropList.isEmpty();
     }
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
+    }
+    
+    @FXML
+    void setAdd(FXMLDocumentController aThis) {
+        
     }
     
 }

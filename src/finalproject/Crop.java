@@ -28,7 +28,7 @@ public class Crop {
         this.fieldSection = fieldSection;
     }
 
-    public void setFieldSection(String fieldSection) {
+    public void setFieldSection(char fieldSection) {
         this.fieldSection = fieldSection;
     }
 
@@ -56,7 +56,7 @@ public class Crop {
         this.pricePerPound = pricePerPound;
     }
 
-    public String getFieldSection() {
+    public char getFieldSection() {
         return fieldSection;
     }
 

@@ -5,14 +5,20 @@
  */
 package finalproject;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.stage.Stage;
 
 /**
  *
@@ -45,6 +51,14 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<?, ?> itemQuantity;
     @FXML
     private TableColumn<?, ?> itemAvailability;
+    @FXML
+    public ArrayList<Crop> cropList = new ArrayList<>();
+    @FXML
+    private AddWindowController add;
+    @FXML
+    private DeleteWindowController delete;
+    @FXML
+    private UpdateWindowController update;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -57,7 +71,23 @@ public class FXMLDocumentController implements Initializable {
     }    
 
     @FXML
-    private void addBtnHandler(ActionEvent event) {
+    private void addBtnHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("AddWindow.fxml"));
+        Parent root = (Parent)loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Add Window Controller");
+        stage.show();
+        add = loader.getController();
+        add.setAdd(this);
+        addBtn.setDisable(true);
+        
+        stage.setOnCloseRequest(e -> {
+           addBtn.setDisable(false); 
+        });
+        
     }
 
 
