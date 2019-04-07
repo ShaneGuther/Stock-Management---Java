@@ -21,23 +21,23 @@ import javafx.scene.control.TextField;
 public class AddWindowController implements Initializable {
 
     @FXML
-    private TextField itemID;
-    @FXML
     private Button acptBtn;
     @FXML
     private Button cancelBtn;
     @FXML
-    private TextField itemName;
+    private TextField tfID;
     @FXML
-    private TextField itemType;
+    private TextField tfName;
     @FXML
-    private TextField itemQuantity;
+    private TextField tfType;
     @FXML
-    private TextField itemPrice;
+    private TextField tfQuantity;
     @FXML
-    private TextField itemAvailability;
+    private TextField tfPrice;
     @FXML
-    private TextField fieldSection;
+    private TextField tfAvailability;
+    @FXML
+    private TextField tfSection;
 
     /**
      * Initializes the controller class.
@@ -45,10 +45,13 @@ public class AddWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        itemID
+        itemID.setText(cropList.get(cropList.size()));
     }    
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
+           
     }
 
     @FXML

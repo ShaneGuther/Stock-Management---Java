@@ -21,23 +21,23 @@ import javafx.scene.control.TextField;
 public class DeleteWindowController implements Initializable {
 
     @FXML
-    private TextField itemID;
-    @FXML
     private Button acptBtn;
     @FXML
     private Button cancelBtn;
     @FXML
-    private TextField itemName;
+    private TextField tfID;
     @FXML
-    private TextField itemType;
+    private TextField tfName;
     @FXML
-    private TextField itemQuantity;
+    private TextField tfType;
     @FXML
-    private TextField itemPrice;
+    private TextField tfQuantity;
     @FXML
-    private TextField itemAvailability;
+    private TextField tfPrice;
     @FXML
-    private TextField itemSection;
+    private TextField tfAvailability;
+    @FXML
+    private TextField tfSection;
 
     /**
      * Initializes the controller class.
