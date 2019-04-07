@@ -1,5 +1,5 @@
 /*
-This is an attempt to use github. add new branch
+This is an attempt to use github. add new branch whats going on
  */
 package finalproject;
 
