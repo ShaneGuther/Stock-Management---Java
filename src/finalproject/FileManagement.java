@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package finalproject;
 
 import java.io.File;
@@ -13,9 +17,6 @@ import java.util.Scanner;
  */
 public class FileManagement {
     public static void main(String[]args){
-        
-    }
-    public void fileReading(){
                 File file = new File("studentInfo.csv");
         //Step 2: create file reader
         //-Scanner class: file reader
@@ -35,18 +36,19 @@ public class FileManagement {
             //- split the String into three fields, id, name mark]
             //use split method with a delimiter
             String[] fields = record.split(","); //tokenizing
-            
-            String name = fields[0];
-            String type = fields[1];
-            int quant = Integer.parseInt(fields[2]);          
-            boolean avail = Boolean.parseBoolean(fields[3]);
-            double price = Double.parseDouble(fields[4]);
+            int id = Integer.parseInt(fields[0]);
+            //System.out.println("hi");
+            String name = fields[1];
+            String type = fields[2];
+            double quantity = Double.parseDouble(fields[3]);
+            boolean avail = Boolean.parseBoolean(fields[4]);
+            double price = Double.parseDouble(fields[5]);
             char fieldSect = fields[6].charAt(0);
             //char fieldSect = fields[3].charAt(0);
             //char fieldSect = 'a';
-            Crop newCrop = new Crop(name, type, quant, avail, price, fieldSect);
+     
            // cropList.add(newCrop);
-            System.out.println(newCrop);
+           // System.out.println(newCrop.toString());
             
             
             
@@ -59,7 +61,9 @@ public class FileManagement {
                 fileInput.close();
             }
         }
-    }
+    }    
+
+  
 
     public void fileWriting(ArrayList a, String name, String type, int quantity, boolean avail, double price, char fieldSect){
         Scanner input = new Scanner(System.in);
@@ -95,11 +99,9 @@ public class FileManagement {
         finally{
             if(output != null)
                 output.close();
-        }
+}
+    }
+}
         
        
-    }
-    }
-
     
-}
