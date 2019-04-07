@@ -16,7 +16,7 @@ import javafx.scene.control.TableColumn;
 
 /**
  *
- * @author Rajiv
+ * @author Rajiv, Shane, Patrick
  */
 public class FXMLDocumentController implements Initializable {
     
