@@ -14,12 +14,13 @@ public class Crop {
     private char fieldSection;
     private String itemName;
     private String itemType;
-    private double itemQuantity;
+    private int itemQuantity;
     private boolean itemAvailability;
     private double pricePerPound;
 
-    public Crop(int itemId, String name, String itemType, double itemQuantity, boolean itemAvailability, double pricePerPound, char fieldSection) {
-        this.itemId = itemId;
+    public Crop(String name, String itemType, int itemQuantity, boolean itemAvailability, double pricePerPound, char fieldSection) {
+        //this.itemId = itemId;
+        this.itemId = 0;
         this.itemName = name;
         this.itemType = itemType;
         this.itemQuantity = itemQuantity;
@@ -44,7 +45,7 @@ public class Crop {
         this.itemType = itemType;
     }
 
-    public void setItemQuantity(double itemQuantity) {
+    public void setItemQuantity(int itemQuantity) {
         this.itemQuantity = itemQuantity;
     }
 
@@ -86,7 +87,7 @@ public class Crop {
 
     @Override
     public String toString() {
-        return "Crop{" + "id=" + itemId + ", name=" + itemName + ", itemType=" + itemType +", quantity="+itemQuantity+", availability="+itemAvailability+", price="+pricePerPound+", field="+fieldSection+ '}';
+        return itemName + "," + itemType +"," + itemQuantity + "," + itemAvailability + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
     }
 
 
