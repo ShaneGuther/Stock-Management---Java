@@ -30,10 +30,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button updBtn;
     @FXML
-    private TableColumn<?, ?> entry;
-    @FXML
-    private TableColumn<?, ?> item;
-    @FXML
     private TableColumn<?, ?> type;
     @FXML
     private TableColumn<?, ?> quantity;
@@ -43,6 +39,10 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<?, ?> availability;
     @FXML
     private TableColumn<?, ?> fieldSection;
+    @FXML
+    private TableColumn<?, ?> itemID;
+    @FXML
+    private TableColumn<?, ?> itemName;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");

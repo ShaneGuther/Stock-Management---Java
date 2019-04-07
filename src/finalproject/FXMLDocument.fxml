@@ -14,11 +14,12 @@
    <top>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: Black;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="user" prefHeight="35.0" prefWidth="79.0" text="User: Michael" translateX="-200.0">
+            <Label fx:id="loginType" alignment="CENTER" prefHeight="35.0" prefWidth="52.0" text="Admin:" translateX="-190.0">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
+            <Label fx:id="loginName" prefHeight="34.0" prefWidth="72.0" text="Administrator" translateX="-190.0" />
             <Label contentDisplay="CENTER" prefHeight="44.0" prefWidth="332.0" text="Agricultural Stock Management">
                <font>
                   <Font name="Marlett" size="22.0" />
@@ -30,22 +31,22 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Button fx:id="addBtn" alignment="CENTER" mnemonicParsing="false" onAction="#addBtnHandler" prefHeight="68.0" prefWidth="47.0" text="Add" translateX="211.0" />
-            <Button fx:id="deleteBtn" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deleteBtnHandler" prefHeight="69.0" prefWidth="52.0" text="Delete" translateX="210.5" />
-            <Button fx:id="updBtn" alignment="BASELINE_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#updBtnHandler" prefHeight="35.0" prefWidth="66.0" text="Update" textAlignment="CENTER" translateX="211.0" />
+            <Button fx:id="addBtn" alignment="CENTER" mnemonicParsing="false" onAction="#addBtnHandler" prefHeight="68.0" prefWidth="47.0" text="Add" translateX="189.0" />
+            <Button fx:id="delBtn" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#delBtnHandler" prefHeight="69.0" prefWidth="52.0" text="Delete" translateX="189.0" />
+            <Button fx:id="updBtn" alignment="BASELINE_CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#updBtnHandler" prefHeight="35.0" prefWidth="66.0" text="Update" textAlignment="CENTER" translateX="189.0" />
          </children>
       </HBox>
    </top>
    <center>
       <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="entry" prefWidth="140.30770897865295" text="Entry #" />
-          <TableColumn fx:id="item" prefWidth="79.01541137695312" text="Item" />
-            <TableColumn fx:id="type" minWidth="7.38458251953125" prefWidth="67.93841552734375" text="Type" />
-            <TableColumn fx:id="quantity" prefWidth="108.55389404296875" text="Quantity(lb)" />
-            <TableColumn fx:id="pricePerPound" prefWidth="95.26153564453125" text="Price Per Pound" />
-            <TableColumn fx:id="availability" prefWidth="96.73843383789062" text="Availability" />
-            <TableColumn fx:id="fieldSection" minWidth="0.73846435546875" prefWidth="185.3538680326028" text="Field Section" />
+          <TableColumn fx:id="itemID" prefWidth="120.36921811103821" text="Item ID" />
+          <TableColumn fx:id="itemName" prefWidth="100.92308807373047" text="Item Name" />
+            <TableColumn fx:id="itemType" minWidth="7.38458251953125" prefWidth="71.13848876953125" text="Type" />
+            <TableColumn fx:id="itemQuantity" prefWidth="107.56924438476562" text="Quantity(lb)" />
+            <TableColumn fx:id="pricePerPound" prefWidth="124.79989624023438" text="Price Per Pound" />
+            <TableColumn fx:id="itemAvailability" prefWidth="107.07696533203125" text="Availability" />
+            <TableColumn fx:id="fieldSection" minWidth="0.73846435546875" prefWidth="146.70770263671875" text="Field Section" />
         </columns>
       </TableView>
    </center>
