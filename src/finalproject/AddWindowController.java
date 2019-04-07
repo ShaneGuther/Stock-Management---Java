@@ -7,7 +7,11 @@ package finalproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -16,6 +20,25 @@ import javafx.fxml.Initializable;
  */
 public class AddWindowController implements Initializable {
 
+    @FXML
+    private TextField itemID;
+    @FXML
+    private Button acptBtn;
+    @FXML
+    private Button cancelBtn;
+    @FXML
+    private TextField itemName;
+    @FXML
+    private TextField itemType;
+    @FXML
+    private TextField itemQuantity;
+    @FXML
+    private TextField itemPrice;
+    @FXML
+    private TextField itemAvailability;
+    @FXML
+    private TextField fieldSection;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +46,13 @@ public class AddWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void acptBtnHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelBtnHandler(ActionEvent event) {
+    }
     
 }

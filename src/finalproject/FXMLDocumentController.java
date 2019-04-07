@@ -22,27 +22,29 @@ public class FXMLDocumentController implements Initializable {
     
     private Label label;
     @FXML
-    private Label user;
-    @FXML
     private Button addBtn;
-    @FXML
-    private Button deleteBtn;
     @FXML
     private Button updBtn;
     @FXML
-    private TableColumn<?, ?> type;
-    @FXML
-    private TableColumn<?, ?> quantity;
-    @FXML
     private TableColumn<?, ?> pricePerPound;
-    @FXML
-    private TableColumn<?, ?> availability;
     @FXML
     private TableColumn<?, ?> fieldSection;
     @FXML
     private TableColumn<?, ?> itemID;
     @FXML
     private TableColumn<?, ?> itemName;
+    @FXML
+    private Label loginType;
+    @FXML
+    private Label loginName;
+    @FXML
+    private Button delBtn;
+    @FXML
+    private TableColumn<?, ?> itemType;
+    @FXML
+    private TableColumn<?, ?> itemQuantity;
+    @FXML
+    private TableColumn<?, ?> itemAvailability;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -58,12 +60,13 @@ public class FXMLDocumentController implements Initializable {
     private void addBtnHandler(ActionEvent event) {
     }
 
-    @FXML
-    private void deleteBtnHandler(ActionEvent event) {
-    }
 
     @FXML
     private void updBtnHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void delBtnHandler(ActionEvent event) {
     }
     
 }
