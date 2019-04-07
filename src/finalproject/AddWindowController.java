@@ -38,6 +38,7 @@ public class AddWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
+    
 
     /**
      * Initializes the controller class.
@@ -45,8 +46,6 @@ public class AddWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        itemID
-        itemID.setText(cropList.get(cropList.size()));
     }    
 
     @FXML
