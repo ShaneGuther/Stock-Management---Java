@@ -40,7 +40,6 @@ public class AddWindowController implements Initializable {
     private TextField tfSection;
     @FXML
     private FXMLDocumentController doc;
-    
 
     /**
      * Initializes the controller class.
