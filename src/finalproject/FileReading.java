@@ -38,7 +38,7 @@ public class FileReading {
             //- split the String into three fields, id, name mark]
             //use split method with a delimiter
             String[] fields = record.split(","); //tokenizing
-            String id = fields[0];
+            int id = Integer.parseInt(fields[0]);
             //System.out.println("hi");
             String name = fields[1];
             String type = fields[2];
@@ -61,46 +61,46 @@ public class FileReading {
         }
     }    
 }
-class Crop{
-    private String id;
-    private String name;
-    private String type;
-    
-
-    public Crop(String id, String name, String type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        
-    }
-    
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-    
-    @Override
-    public String toString(){
-        return "ID " + getId() + " | Name:" + getName() + " | Type: " + getType();
-    }
-    
-}
+//class Crop{
+//    private String id;
+//    private String name;
+//    private String type;
+//    
+//
+//    public Crop(String id, String name, String type) {
+//        this.id = id;
+//        this.name = name;
+//        this.type = type;
+//        
+//    }
+//    
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getType() {
+//        return type;
+//    }
+//
+//    public void setType(String type) {
+//        this.type = type;
+//    }
+//    
+//    @Override
+//    public String toString(){
+//        return "ID " + getId() + " | Name:" + getName() + " | Type: " + getType();
+//    }
+//    
+//}
