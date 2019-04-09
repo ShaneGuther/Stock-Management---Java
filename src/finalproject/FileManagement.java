@@ -5,11 +5,16 @@
  */
 package finalproject;
 
+import java.io.BufferedReader;
 import javafx.fxml.FXML;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import javafx.collections.ObservableList;
 
@@ -27,49 +32,41 @@ public class FileManagement {
     }
        
     public void fileReading(ObservableList a){
-        Scanner fileInput = null;
-        String file = "farmInfo.csv";
-         try{
-             
-            //Step 2: create reader over the file object   
-            fileInput = new Scanner(file);
-            
-            //Step 3: Read file
-            while(fileInput.hasNext()) {//check if there is more data in the file
-            String record = fileInput.nextLine();
-           // System.out.println(record);
-            //from a record, create a student object
-            //- split the String into three fields, id, name mark]
-            //use split method with a delimiter
-            String[] fields = record.split(","); //tokenizing
-            //int id = Integer.parseInt(fields[0]);
-            //System.out.println("hi");
-            String name = fields[0];
-            String type = fields[1];
-            Integer quantity = Integer.parseInt(fields[2]);
-            //boolean avail = Boolean.parseBoolean(fields[4]);
-            Double price = Double.parseDouble(fields[3]);
-            String fieldSect = fields[4];
-            //char fieldSect = fields[3].charAt(0);
-            //char fieldSect = 'a';
-            Crop oldCrop = new Crop(name, type, quantity, price, fieldSect);
-            a.add(oldCrop);
-           // System.out.println(newCrop.toString());
-       
-            }
-        }catch(Exception e){
-            System.out.println("Can't read from file");
-        }finally{
-            if(fileInput != null){
-                fileInput.close();
-            }
-        }
-    
-}
+        try{
         
-
-  
-
+        Scanner fileInput = null;
+        String line = "";
+        String file = "farmInfo.csv";
+        //ArrayList<String> csvList = new ArrayList<>();
+        //Scanner lineToken;
+        //BufferedReader reader = new BufferedReader(new FileReader(file));
+         //try{
+            
+            //Step 2: create reader over the file object   
+            //fileInput = new Scanner(file);
+            
+            
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);            
+                while((line = br.readLine())!=null) {
+                    String[] record = line.split(",");
+                    String name = record[0].trim();
+                    String type = record[1].trim();
+                    Integer quantity = Integer.parseInt(record[2].trim());
+                    Double price = Double.parseDouble(record[3].trim());
+                    String fieldSect = record[4].trim();
+                    //Crop oldCrop = new Crop(name, type, quantity, price, fieldSect);
+                    a.add(new Crop(name, type, quantity, price, fieldSect));
+                }
+                br.close();
+                }catch(FileNotFoundException ex){
+                    System.out.println("Error2" + ex);
+                }catch(IOException e){
+                    System.out.println("Error" + e);
+                }finally{
+                
+        }
+     }
     public void fileWriting(ObservableList b, String name, String type, int quantity, double price, String fieldSect){
         //Scanner input = new Scanner(System.in);
         //ArrayList<Student> studentList = new ArrayList<>();
@@ -79,137 +76,35 @@ public class FileManagement {
         //2. create file writer
         PrintWriter output = null;
         try{
-            output = new PrintWriter(file);
+            output = new PrintWriter(new FileWriter(file, true));
             
         
-        //3. read item info from user and write in CSV format
+        
         
             String itemName = name;
             String itemType = type;
-            int itemQuant = quantity;
-           // boolean itemAvail = avail;
-            double itemPrice = price;
+            Integer itemQuant = quantity;
+        
+            Double itemPrice = price;
             String itemSect = fieldSect;
             Crop newCrop = new Crop(itemName, itemType, itemQuant, itemPrice, itemSect);
-            b.add(newCrop);
-           //System.out.println(newCrop);
-            output.println(newCrop.getItemName() + "," + newCrop.getItemType() + "," + newCrop.getItemQuantity() + 
-                    "," + newCrop.getPricePerPound() + "," + newCrop.getFieldSection());
+            if(b.contains(newCrop)){
+            }else
+                b.add(newCrop);
+            output.println(itemName + "," + itemType + "," + itemQuant + 
+                    "," + itemPrice + "," + fieldSect);
         
         }catch(FileNotFoundException e){
             System.out.println("File cannot be created " + e);
             
+        }catch(IOException ex){
+             System.out.println("IO Exception " + ex);
         }
-        //4.close the file/writer
+        //Release file reading resources
         finally{
             if(output != null)
                 output.close();
         }
     }
 }
-        
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package finalproject;
-//
-//import java.io.File;
-//import java.io.FileNotFoundException;
-//import java.util.Scanner;
-//
-///**
-// *
-// * @author shane
-// */
-//public class FileManagement {
-//    public static void main(String[]args){
-//                File file = new File("studentInfo.csv");
-//        //Step 2: create file reader
-//        //-Scanner class: file reader
-//        //  -1 method -- hasXXXXX(); - hasNext(), hasNextLine(), hasNextInt() ....
-//        //  -2 method -- nextXXXX(); - has nextInt(), Double(), next(), nextLine()....
-//        
-//        Scanner fileInput = null;
-//        try{
-//            //Step 2: create reader over the file object   
-//            fileInput = new Scanner(file);
-//            
-//            //Step 3: Read file
-//            while(fileInput.hasNext()) {//check if there is more data in the file
-//            String record = fileInput.nextLine();
-//           // System.out.println(record);
-//            //from a record, create a student object
-//            //- split the String into three fields, id, name mark]
-//            //use split method with a delimiter
-//            String[] fields = record.split(","); //tokenizing
-//            int id = Integer.parseInt(fields[0]);
-//            //System.out.println("hi");
-//            String name = fields[1];
-//            String type = fields[2];
-//            double quantity = Double.parseDouble(fields[3]);
-//            boolean avail = Boolean.parseBoolean(fields[4]);
-//            double price = Double.parseDouble(fields[5]);
-//            char fieldSect = fields[6].charAt(0);
-//            //char fieldSect = fields[3].charAt(0);
-//            //char fieldSect = 'a';
-//            Crop newCrop = new Crop(id, name, type);
-//           // cropList.add(newCrop);
-//            System.out.println(newCrop.toString());
-//            
-//            
-//            
-//            
-//            }
-//        }catch(FileNotFoundException e){
-//            System.out.println("Can't read from file");
-//        }finally{
-//            if(fileInput != null){
-//                fileInput.close();
-//            }
-//        }
-//    }    
-//}
-//  
-//
-//    public void fileWriting(ArrayList a, String name, String type, int quantity, boolean avail, double price, char fieldSect){
-//        Scanner input = new Scanner(System.in);
-//        //ArrayList<Student> studentList = new ArrayList<>();
-//        //1. create file object
-//        //check existance if desired
-//         File file = new File("studentInfo.csv");
-//        //2. create file writer
-//        PrintWriter output = null;
-//        try{
-//            output = new PrintWriter(file);
-//            
-//        
-//        //3. read student info from user and write in CSV format
-//        for(int i = 0; i < a.size(); i++){
-//            String itemName = name;
-//            String itemType = type;
-//            int itemQuant = quantity;
-//            boolean itemAvail = avail;
-//            double itemPrice = price;
-//            char itemSect = fieldSect;
-//            Crop newCrop = new Crop(itemName, itemType, itemQuant, itemAvail, itemPrice, itemSect);
-//           // studentList.add(newStudent);
-//            output.println(newCrop);
-//        }
-//            //output.println(newStudent.getId(), newStudent.getName());
-//             //output.println(addArrayToFile(studentList));
-//        }catch(FileNotFoundException e){
-//            System.out.println("File cannot be created " + e);
-//            
-//        }
-//        //4.close the file/writer
-//        finally{
-//            if(output != null)
-//                output.close();
-//}}
-//        
-//       
-//    
-//       
-//    
+       
