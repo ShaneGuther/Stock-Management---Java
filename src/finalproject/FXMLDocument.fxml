@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.FXMLDocumentController">
+<BorderPane maxHeight="568.0" maxWidth="1024.0" minHeight="568.0" minWidth="1024.0" prefHeight="568.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.FXMLDocumentController">
    <top>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: Black;" BorderPane.alignment="CENTER">
          <children>
@@ -38,14 +38,14 @@
       </HBox>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="itemID" prefWidth="120.36921811103821" text="Item ID" />
+<!--          <TableColumn fx:id="itemID" prefWidth="120.36921811103821" text="Item ID" />-->
           <TableColumn fx:id="itemName" prefWidth="100.92308807373047" text="Item Name" />
             <TableColumn fx:id="itemType" minWidth="7.38458251953125" prefWidth="71.13848876953125" text="Type" />
             <TableColumn fx:id="itemQuantity" prefWidth="107.56924438476562" text="Quantity(lb)" />
             <TableColumn fx:id="pricePerPound" prefWidth="124.79989624023438" text="Price Per Pound" />
-            <TableColumn fx:id="itemAvailability" prefWidth="107.07696533203125" text="Availability" />
+<!--            <TableColumn fx:id="itemAvailability" prefWidth="107.07696533203125" text="Availability" />-->
             <TableColumn fx:id="fieldSection" minWidth="0.73846435546875" prefWidth="146.70770263671875" text="Field Section" />
         </columns>
       </TableView>
