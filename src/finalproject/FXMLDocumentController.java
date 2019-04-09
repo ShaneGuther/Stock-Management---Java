@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -32,13 +36,17 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button updBtn;
     @FXML
-    private TableColumn<?, ?> pricePerPound;
+   // private TableColumn<Integer, Integer> itemID;
+   // @FXML
+    private TableColumn<Crop, String> itemName;
     @FXML
-    private TableColumn<?, ?> fieldSection;
+    private TableColumn<Crop, String> itemType;
     @FXML
-    private TableColumn<?, ?> itemID;
+    private TableColumn<Crop, Integer> itemQuantity;
     @FXML
-    private TableColumn<?, ?> itemName;
+    private TableColumn<Crop, Double> pricePerPound;
+    @FXML
+    private TableColumn<Crop, String> fieldSection;
     @FXML
     private Label loginType;
     @FXML
@@ -46,19 +54,17 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button delBtn;
     @FXML
-    private TableColumn<?, ?> itemType;
-    @FXML
-    private TableColumn<?, ?> itemQuantity;
-    @FXML
-    private TableColumn<?, ?> itemAvailability;
-    @FXML
-    public ArrayList<Crop> cropList = new ArrayList<>();
-    @FXML
+    private TableView<Crop> tableView;
+    //private TableColumn<Crop, Boolean> itemAvailability;
+    
+    FileManagement manager = new FileManagement();
+    
+    ObservableList<Crop> list = FXCollections.observableArrayList(new Crop("corn", "wheat", 2, 1.2, "g"));
+    //new Crop("corn","wheat",1,2.2,'g')
     private AddWindowController add;
-    @FXML
-    private DeleteWindowController delete;
-    @FXML
-    private UpdateWindowController update;
+    
+   
+  
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -67,7 +73,7 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       showData();
     }    
 
     @FXML
@@ -80,23 +86,55 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Add Window Controller");
         stage.show();
-        add = loader.getController();
-        add.setAdd(this);
-        addBtn.setDisable(true);
+        //add = loader.getController();
+        //add.setAdd(this);
+        //addBtn.setDisable(true);
+//        itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+//        itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
+//        pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
+//        itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
+//        fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
+//        list.add(new Crop("tomato", "plant", 10, 1.2, "h"));
         
-        stage.setOnCloseRequest(e -> {
-           addBtn.setDisable(false); 
-        });
+//        tableView.setItems(list);
+//        System.out.println(list);
+        
+
+       
+        
+
+       
+          // tableView.getColumns().addAll(itemType, itemQuantity, pricePerPound, fieldSection);
+//        //this.itemName.setCellValueFactory(cellData -> cellData.getValue().String());
+//        this.itemName.setCellValueFactory(new PropertyValueFactory<Crop, String>("name"));
+//        this.itemType.setCellValueFactory(cellData -> cellData.getValue().keyProperty());
+//        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
+//        stage.setOnCloseRequest(e -> {
+//           addBtn.setDisable(false); 
+           
+        //});
         
     }
 
 
     @FXML
     private void updBtnHandler(ActionEvent event) {
+        showData();
     }
 
     @FXML
     private void delBtnHandler(ActionEvent event) {
+       showData();
     }
     
+    public void showData(){
+        manager.fileReading(list);
+        itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
+        pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
+        itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
+        fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
+        tableView.setItems(list);
+    }
 }
+
