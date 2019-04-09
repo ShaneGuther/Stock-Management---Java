@@ -39,7 +39,9 @@ public class AddWindowController implements Initializable {
     @FXML
     private TextField tfSection;
     @FXML
-    private FXMLDocumentController doc;
+    private FXMLDocumentController doc = new FXMLDocumentController();
+    
+    FileManagement manager = new FileManagement();
 
     /**
      * Initializes the controller class.
@@ -53,7 +55,21 @@ public class AddWindowController implements Initializable {
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
-    doc.cropList.isEmpty();
+        try{
+    manager.fileWriting(doc.list, tfName.getText(), tfType.getText(), 
+            Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
+            tfSection.getText());
+    }catch(Exception e){
+        System.out.println("Error Occurred" + e);
+    }finally{
+        tfName.setText(""); 
+        tfType.setText("");
+        tfQuantity.setText("");
+        tfPrice.setText("");
+        tfSection.setText("");
+        
+        }
+        doc.showData();
     }
 
     @FXML
