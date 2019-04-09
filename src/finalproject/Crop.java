@@ -4,90 +4,105 @@
  * */
 package finalproject;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author Pat
  */
 public class Crop {
+    //private int itemId;
+    //private String itemName;
+    private final SimpleStringProperty itemName;
+    //private String itemType;
+    private final SimpleStringProperty itemType;
+    //private char fieldSection;
+    private final SimpleStringProperty fieldSection;
+    //private int itemQuantity;
+    private final SimpleIntegerProperty itemQuantity;
+    //private boolean itemAvailability;
+    private final SimpleDoubleProperty pricePerPound;
+    //private double pricePerPound;
 
-    private int itemId;
-    private char fieldSection;
-    private String itemName;
-    private String itemType;
-    private int itemQuantity;
-    private boolean itemAvailability;
-    private double pricePerPound;
-
-    public Crop(String name, String itemType, int itemQuantity, boolean itemAvailability, double pricePerPound, char fieldSection) {
-        //this.itemId = itemId;
-        this.itemId = 0;
-        this.itemName = name;
-        this.itemType = itemType;
-        this.itemQuantity = itemQuantity;
-        this.itemAvailability = itemAvailability;
-        this.pricePerPound = pricePerPound;
-        this.fieldSection = fieldSection;
+//    public Crop(String name, String itemType, int itemQuantity, double pricePerPound, char fieldSection) {
+//        //this.itemId = itemId;
+//        this.itemId = 0;
+//        this.itemName = name;
+//        this.itemType = itemType;
+//        this.itemQuantity = itemQuantity;
+//       // this.itemAvailability = itemAvailability;
+//        this.pricePerPound = pricePerPound;
+//        this.fieldSection = fieldSection;
+//    }    
+    public Crop(String itemName, String itemType, Integer itemQuantity, Double pricePerPound, String fieldSection){
+        this.itemName = new SimpleStringProperty(itemName);
+        this.itemType = new SimpleStringProperty(itemType);
+        this.itemQuantity = new SimpleIntegerProperty(itemQuantity);
+        this.pricePerPound = new SimpleDoubleProperty(pricePerPound);
+        this.fieldSection = new SimpleStringProperty(fieldSection);
     }
 
-    public void setFieldSection(char fieldSection) {
-        this.fieldSection = fieldSection;
+    public void setFieldSection(String section) {
+        fieldSection.set(section);
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+//    public void setItemId(int itemId) {
+//        this.itemId.set(itemId);
+//    }
+
+    public void setItemName(String name) {
+        itemName.set(name);
     }
 
-    public void setName(String name) {
-        this.itemName = name;
+    public void setItemType(String type) {
+        itemType.set(type);
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
+    public void setItemQuantity(Integer quantity) {
+        itemQuantity.set(quantity);
     }
 
-    public void setItemQuantity(int itemQuantity) {
-        this.itemQuantity = itemQuantity;
+//    public void setItemAvailability(boolean itemAvailability) {
+//        this.itemAvailability = itemAvailability;
+//    }
+
+    public void setPricePerPound(Double price) {
+        pricePerPound.set(price);
     }
 
-    public void setItemAvailability(boolean itemAvailability) {
-        this.itemAvailability = itemAvailability;
+    public String getFieldSection() {
+        return fieldSection.get();
     }
 
-    public void setPricePerPound(double pricePerPound) {
-        this.pricePerPound = pricePerPound;
-    }
+//    public int getItemId() {
+//        return itemId;
+//    }
 
-    public char getFieldSection() {
-        return fieldSection;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public String getName() {
-        return itemName;
+    public String getItemName() {
+        return itemName.get();
     }
 
     public String getItemType() {
-        return itemType;
+        return itemType.get();
     }
 
     public double getItemQuantity() {
-        return itemQuantity;
+        return itemQuantity.get();
     }
 
-    public boolean isItemAvailability() {
-        return itemAvailability;
-    }
+//    public boolean isItemAvailability() {
+//        return itemAvailability;
+//    }
 
     public double getPricePerPound() {
-        return pricePerPound;
+        return pricePerPound.get();
     }
 
     @Override
     public String toString() {
-        return itemName + "," + itemType +"," + itemQuantity + "," + itemAvailability + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
+        return itemName + "," + itemType +"," + itemQuantity + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
     }
 
 
