@@ -5,26 +5,32 @@
  */
 package finalproject;
 
+import javafx.fxml.FXML;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author shane
  */
 public class FileManagement {
+     public ArrayList<Crop> cropList = new ArrayList<>();
+    @FXML
+    
+   // private FXMLDocumentController doc;
     public static void main(String[]args){
-                File file = new File("studentInfo.csv");
-        //Step 2: create file reader
-        //-Scanner class: file reader
-        //  -1 method -- hasXXXXX(); - hasNext(), hasNextLine(), hasNextInt() ....
-        //  -2 method -- nextXXXX(); - has nextInt(), Double(), next(), nextLine()....
         
+    }
+       
+    public void fileReading(ObservableList a){
         Scanner fileInput = null;
-        try{
+        String file = "farmInfo.csv";
+         try{
+             
             //Step 2: create reader over the file object   
             fileInput = new Scanner(file);
             
@@ -36,61 +42,60 @@ public class FileManagement {
             //- split the String into three fields, id, name mark]
             //use split method with a delimiter
             String[] fields = record.split(","); //tokenizing
-            int id = Integer.parseInt(fields[0]);
+            //int id = Integer.parseInt(fields[0]);
             //System.out.println("hi");
-            String name = fields[1];
-            String type = fields[2];
-            double quantity = Double.parseDouble(fields[3]);
-            boolean avail = Boolean.parseBoolean(fields[4]);
-            double price = Double.parseDouble(fields[5]);
-            char fieldSect = fields[6].charAt(0);
+            String name = fields[0];
+            String type = fields[1];
+            Integer quantity = Integer.parseInt(fields[2]);
+            //boolean avail = Boolean.parseBoolean(fields[4]);
+            Double price = Double.parseDouble(fields[3]);
+            String fieldSect = fields[4];
             //char fieldSect = fields[3].charAt(0);
             //char fieldSect = 'a';
-     
-           // cropList.add(newCrop);
+            Crop oldCrop = new Crop(name, type, quantity, price, fieldSect);
+            a.add(oldCrop);
            // System.out.println(newCrop.toString());
-            
-            
-            
-            
+       
             }
-        }catch(FileNotFoundException e){
+        }catch(Exception e){
             System.out.println("Can't read from file");
         }finally{
             if(fileInput != null){
                 fileInput.close();
             }
         }
-    }    
+    
+}
+        
 
   
 
-    public void fileWriting(ArrayList a, String name, String type, int quantity, boolean avail, double price, char fieldSect){
-        Scanner input = new Scanner(System.in);
+    public void fileWriting(ObservableList b, String name, String type, int quantity, double price, String fieldSect){
+        //Scanner input = new Scanner(System.in);
         //ArrayList<Student> studentList = new ArrayList<>();
         //1. create file object
         //check existance if desired
-         File file = new File("studentInfo.csv");
+         File file = new File("farmInfo.csv");
         //2. create file writer
         PrintWriter output = null;
         try{
             output = new PrintWriter(file);
             
         
-        //3. read student info from user and write in CSV format
-        for(int i = 0; i < a.size(); i++){
+        //3. read item info from user and write in CSV format
+        
             String itemName = name;
             String itemType = type;
             int itemQuant = quantity;
-            boolean itemAvail = avail;
+           // boolean itemAvail = avail;
             double itemPrice = price;
-            char itemSect = fieldSect;
-            Crop newCrop = new Crop(itemName, itemType, itemQuant, itemAvail, itemPrice, itemSect);
-           // studentList.add(newStudent);
-            output.println(newCrop);
-        }
-            //output.println(newStudent.getId(), newStudent.getName());
-             //output.println(addArrayToFile(studentList));
+            String itemSect = fieldSect;
+            Crop newCrop = new Crop(itemName, itemType, itemQuant, itemPrice, itemSect);
+            b.add(newCrop);
+           //System.out.println(newCrop);
+            output.println(newCrop.getItemName() + "," + newCrop.getItemType() + "," + newCrop.getItemQuantity() + 
+                    "," + newCrop.getPricePerPound() + "," + newCrop.getFieldSection());
+        
         }catch(FileNotFoundException e){
             System.out.println("File cannot be created " + e);
             
@@ -99,7 +104,7 @@ public class FileManagement {
         finally{
             if(output != null)
                 output.close();
-}
+        }
     }
 }
         
