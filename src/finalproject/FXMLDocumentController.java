@@ -62,6 +62,8 @@ public class FXMLDocumentController implements Initializable {
     ObservableList<Crop> list = FXCollections.observableArrayList(new Crop("corn", "wheat", 2, 1.2, "g"));
     //new Crop("corn","wheat",1,2.2,'g')
     private AddWindowController add;
+    private DeleteWindowController delete;
+    private UpdateWindowController update;
     
    
   
@@ -86,9 +88,9 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Add Window Controller");
         stage.show();
-        //add = loader.getController();
-        //add.setAdd(this);
-        //addBtn.setDisable(true);
+        add = loader.getController();
+        add.setAdd(this);
+        addBtn.setDisable(true);
 //        itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
 //        itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
 //        pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
@@ -109,22 +111,50 @@ public class FXMLDocumentController implements Initializable {
 //        this.itemName.setCellValueFactory(new PropertyValueFactory<Crop, String>("name"));
 //        this.itemType.setCellValueFactory(cellData -> cellData.getValue().keyProperty());
 //        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
-//        stage.setOnCloseRequest(e -> {
-//           addBtn.setDisable(false); 
+         stage.setOnCloseRequest(e -> {
+         addBtn.setDisable(false); 
            
-        //});
+        });
         
     }
 
 
     @FXML
-    private void updBtnHandler(ActionEvent event) {
-        showData();
+    private void updBtnHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("UpdateWindow.fxml"));
+        Parent root = (Parent)loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Update Window Controller");
+        stage.show();
+        update = loader.getController();
+        update.setAdd(this);
+        updBtn.setDisable(true);
+        stage.setOnCloseRequest(e -> {
+         updBtn.setDisable(false); 
+           
+        });
     }
 
     @FXML
-    private void delBtnHandler(ActionEvent event) {
-       showData();
+    private void delBtnHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("DeleteWindow.fxml"));
+        Parent root = (Parent)loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Delete Window Controller");
+        stage.show();
+        delete = loader.getController();
+        delete.setAdd(this);
+        delBtn.setDisable(true);
+        stage.setOnCloseRequest(e -> {
+         delBtn.setDisable(false); 
+           
+        });
     }
     
     public void showData(){

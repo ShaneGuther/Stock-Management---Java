@@ -19,6 +19,8 @@ import javafx.scene.control.TextField;
  * @author Rajiv
  */
 public class UpdateWindowController implements Initializable {
+    
+    private FXMLDocumentController doc = new FXMLDocumentController();
 
     @FXML
     private TextField tfID;
@@ -53,6 +55,11 @@ public class UpdateWindowController implements Initializable {
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
+    }
+    
+    @FXML
+    void setAdd(FXMLDocumentController aThis) {
+        
     }
     
 }

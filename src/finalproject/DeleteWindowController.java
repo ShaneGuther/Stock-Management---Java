@@ -38,6 +38,7 @@ public class DeleteWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
+    private FXMLDocumentController doc = new FXMLDocumentController();
 
     /**
      * Initializes the controller class.
@@ -45,6 +46,7 @@ public class DeleteWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML
@@ -53,6 +55,11 @@ public class DeleteWindowController implements Initializable {
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
+    }
+    
+    @FXML
+    void setAdd(FXMLDocumentController aThis) {
+        
     }
     
 }

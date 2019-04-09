@@ -13,7 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Pat
  */
 public class Crop {
-    //private int itemId;
+    private int itemId  = 0;
     //private String itemName;
     private final SimpleStringProperty itemName;
     //private String itemType;
@@ -28,7 +28,6 @@ public class Crop {
 
 //    public Crop(String name, String itemType, int itemQuantity, double pricePerPound, char fieldSection) {
 //        //this.itemId = itemId;
-//        this.itemId = 0;
 //        this.itemName = name;
 //        this.itemType = itemType;
 //        this.itemQuantity = itemQuantity;
@@ -48,9 +47,9 @@ public class Crop {
         fieldSection.set(section);
     }
 
-//    public void setItemId(int itemId) {
-//        this.itemId.set(itemId);
-//    }
+    public void setItemId(int itemId) {
+        //this.itemId.set(itemId);
+    }
 
     public void setItemName(String name) {
         itemName.set(name);

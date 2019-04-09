@@ -49,8 +49,8 @@ public class AddWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //doc.cropList.get(doc.cropList.size()).setItemId(doc.cropList.size());
-        //tfID.setText(doc.cropList.get(doc.cropList.size()).toString());
+        //doc.list.get(doc.list.size()).setItemId(doc.list.size());
+        //tfID.setText(doc.list.get(doc.list.size()).toString());
     }    
 
     @FXML
@@ -74,6 +74,7 @@ public class AddWindowController implements Initializable {
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
+        
     }
     
     @FXML
