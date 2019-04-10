@@ -103,7 +103,7 @@ public class FileManagement {
         }
     }
     public void itemDeleting(ObservableList a, int id){
-        a.remove(id);
+        //a.remove(new Crop(1, "h", "g", 1, 5.1, "j"));
     }
 }
        
