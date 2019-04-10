@@ -59,7 +59,7 @@ public class FXMLDocumentController implements Initializable {
     
     FileManagement manager = new FileManagement();
     
-    ObservableList<Crop> list = FXCollections.observableArrayList(new Crop(4, "corn", "wheat", 2, 1.2, "g"));
+    ObservableList<Crop> list = FXCollections.observableArrayList();
     //new Crop("corn","wheat",1,2.2,'g')
     private AddWindowController add;
     private DeleteWindowController delete;
@@ -112,10 +112,17 @@ public class FXMLDocumentController implements Initializable {
 //        this.itemName.setCellValueFactory(new PropertyValueFactory<Crop, String>("name"));
 //        this.itemType.setCellValueFactory(cellData -> cellData.getValue().keyProperty());
 //        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
-         stage.setOnCloseRequest(e -> {
-         addBtn.setDisable(false); 
-           
+        stage.setOnCloseRequest(e -> {
+        addBtn.setDisable(false); 
+        showData();
         });
+      
+        stage.setOnHidden(e -> {
+        addBtn.setDisable(false); 
+        showData();
+            
+        });
+       
         
     }
 
@@ -133,9 +140,15 @@ public class FXMLDocumentController implements Initializable {
         update = loader.getController();
         update.setAdd(this);
         updBtn.setDisable(true);
+        
         stage.setOnCloseRequest(e -> {
-         updBtn.setDisable(false); 
-           
+        updBtn.setDisable(false); 
+        showData();
+        });
+        stage.setOnHidden(e -> {
+        updBtn.setDisable(false); 
+        showData();
+            
         });
     }
 
@@ -152,13 +165,19 @@ public class FXMLDocumentController implements Initializable {
         delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
+        
         stage.setOnCloseRequest(e -> {
-         delBtn.setDisable(false); 
-           
+        delBtn.setDisable(false); 
+        showData();
+        });
+        stage.setOnHidden(e -> {
+        delBtn.setDisable(false); 
+        showData();
         });
     }
     
     public void showData(){
+        tableView.getItems().clear();
         manager.fileReading(list);
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
