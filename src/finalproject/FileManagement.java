@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 
 /**
  *
@@ -102,8 +103,55 @@ public class FileManagement {
                 output.close();
         }
     }
-    public void itemDeleting(ObservableList a, int id){
-
+//    public void itemDeleting(ObservableList a, Integer id, String name, String type, Integer quantity, Double price, String fieldSect){
+//        Crop toBeDeleted = new Crop(id, name, type, quantity, price, fieldSect);
+        public void itemDeleting(ObservableList<Crop> g, Integer id){
+            try{
+        File file = new File("farmInfo.csv");
+        PrintWriter output = null;
+        output = new PrintWriter(new FileWriter(file, true));
+        g.remove(g.indexOf(id+1));
+        for(Crop d : g){
+        output.println((g.size()+1) + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
+        "," + d.getPricePerPound() + "," + d.getFieldSection());
+        }
+            }catch(IOException e){
+             System.out.println("error" + e);
+             }
+        }
+//        try{
+//        Scanner fileInput = null;
+//        String line = "";
+//        String file = "farmInfo.csv";
+//            FileReader fr = new FileReader(file);
+//            BufferedReader br = new BufferedReader(fr);            
+//                while((line = br.readLine())!=null) {
+//                    String[] record = line.split(",");
+//                    String name = record[1].trim();
+//                    String type = record[2].trim();
+//                    Integer quantity = Integer.parseInt(record[3].trim());
+//                    Double price = Double.parseDouble(record[4].trim());
+//                    String fieldSect = record[5].trim();
+//                    Crop newCrop = new Crop(a.size()+1, name, type, quantity, price, fieldSect);
+//                    a.add(newCrop); //Crop((a.size()+1), name, type, quantity, price, fieldSect));
+//                }
+//                br.close();
+//            
+//                }catch(FileNotFoundException ex){
+//                    System.out.println("Error2" + ex);
+//                }catch(IOException e){
+//                    System.out.println("Error" + e);
+//                }finally{
+//                }
+       // fileWriting(a, name, type, quantity, price, fieldSect);
+   
+//    public TableView deleteSetup(TableView t){
+//        
+//    }
+    
+    public ObservableList<Crop> returnList(ObservableList a){
+    return a;
     }
 }
+
        
