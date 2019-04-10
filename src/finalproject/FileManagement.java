@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 /**
  *
@@ -24,49 +25,46 @@ import javafx.collections.ObservableList;
  */
 public class FileManagement {
      //public ArrayList<Crop> cropList = new ArrayList<>();
+  
     @FXML
-    
+   
    // private FXMLDocumentController doc;
     public static void main(String[]args){
         
     }
-       
-    public void fileReading(ObservableList a){
+    
+    public ObservableList fileReading(){
+        ObservableList<Crop>temp= FXCollections.observableArrayList();
         try{
         
         Scanner fileInput = null;
         String line = "";
         String file = "farmInfo.csv";
-        //ArrayList<String> csvList = new ArrayList<>();
-        //Scanner lineToken;
-        //BufferedReader reader = new BufferedReader(new FileReader(file));
-         //try{
-            
-            //Step 2: create reader over the file object   
-            //fileInput = new Scanner(file);
-            
-           
-            FileReader fr = new FileReader(file);
+     FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);            
                 while((line = br.readLine())!=null) {
                     String[] record = line.split(",");
-                    Integer itemId = Integer.parseInt(record[0].trim());
+                    //Integer itemId = Integer.getInteger(record[0].trim());
                     String name = record[1].trim();
                     String type = record[2].trim();
                     Integer quantity = Integer.parseInt(record[3].trim());
                     Double price = Double.parseDouble(record[4].trim());
                     String fieldSect = record[5].trim();
                     //Crop oldCrop = new Crop(name, type, quantity, price, fieldSect);
-                    a.add(new Crop(itemId, name, type, quantity, price, fieldSect));
+                    temp.add(new Crop(temp.size()+1, name, type, quantity, price, fieldSect));
                 }
+                
                 br.close();
             
                 }catch(FileNotFoundException ex){
                     System.out.println("Error2" + ex);
                 }catch(IOException e){
                     System.out.println("Error" + e);
-                }finally{
+                }catch (NumberFormatException b){
+                System.out.println("Error" +b);
                 }
+                finally{
+                }return temp;
     }
     public void fileWriting(ObservableList <Crop> b){
         //Scanner input = new Scanner(System.in);
@@ -97,16 +95,17 @@ public class FileManagement {
         }
     }
     public ObservableList itemDeleting(ObservableList <Crop>a, int id){
-         for(int i=0;i <a.size();i++){
-                Crop cropTemp= a.get(i);
-                if (cropTemp.getItemId()==id){
-                    a.remove(i);
+         for (Crop temp : a){ 
+               
+                if (temp.getItemId()==id){
+                    a.remove(temp);
                 }
-                
+         
         
     }return a;
     
+    }
 }
-}
+
 
        
