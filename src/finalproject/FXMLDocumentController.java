@@ -125,26 +125,7 @@ public class FXMLDocumentController implements Initializable {
         add = loader.getController();
         add.setAdd(this);
         addBtn.setDisable(true);
-//        itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
-//        itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
-//        pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
-//        itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
-//        fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
-//        list.add(new Crop("tomato", "plant", 10, 1.2, "h"));
-        
-//        tableView.setItems(list);
-//        System.out.println(list);
-        
 
-       
-        
-
-       
-          // tableView.getColumns().addAll(itemType, itemQuantity, pricePerPound, fieldSection);
-//        //this.itemName.setCellValueFactory(cellData -> cellData.getValue().String());
-//        this.itemName.setCellValueFactory(new PropertyValueFactory<Crop, String>("name"));
-//        this.itemType.setCellValueFactory(cellData -> cellData.getValue().keyProperty());
-//        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
         stage.setOnCloseRequest(e -> {
         addBtn.setDisable(false); 
         showData();
