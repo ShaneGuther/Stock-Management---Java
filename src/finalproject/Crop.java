@@ -26,6 +26,7 @@ public class Crop {
     //private boolean itemAvailability;
     private final SimpleDoubleProperty pricePerPound;
     //private double pricePerPound;
+    
 
 //    public Crop(String name, String itemType, int itemQuantity, double pricePerPound, char fieldSection) {
 //        //this.itemId = itemId;
@@ -36,6 +37,7 @@ public class Crop {
 //        this.pricePerPound = pricePerPound;
 //        this.fieldSection = fieldSection;
 //    }    
+    
     public Crop(Integer itemId, String itemName, String itemType, Integer itemQuantity, Double pricePerPound, String fieldSection){
         this.itemId = new SimpleIntegerProperty(itemId);
         this.itemName = new SimpleStringProperty(itemName);
@@ -43,13 +45,14 @@ public class Crop {
         this.itemQuantity = new SimpleIntegerProperty(itemQuantity);
         this.pricePerPound = new SimpleDoubleProperty(pricePerPound);
         this.fieldSection = new SimpleStringProperty(fieldSection);
+        
     }
 
     public void setFieldSection(String section) {
         fieldSection.set(section);
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId.set(itemId);
     }
 
@@ -103,19 +106,38 @@ public class Crop {
 
     @Override
     public String toString() {
-        return itemId + "," + itemName + "," + itemType +"," + itemQuantity + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
+        return itemId + "," + itemName + "," + itemType +"," + itemQuantity + "," + pricePerPound + "," + fieldSection;
     }
-
-   /* public String cropImage(){
+    
+   public String getImage(){
         String imageSource="";
-        switch (itemType){
-            case "Nightshade":
-                imageSource="/images.corn."
+        switch (itemType.toString()){
+            case "Nightshades":
+                imageSource="/images.nightShade.jpg";
                         break;
-            case "Legume":
-                
+            case "Legumes":
+                imageSource="/images.legumes.jif";
+                break;
+            case "Cucurbits":
+                imageSource="/images.corn.";
+                        break;
+            case "Brassicas":
+                imageSource="/images.corn.";
+            break;    
+            case "Alliums":
+                imageSource="/images.corn.";
+                        break;
+            case "Asters":
+                imageSource="/images.corn.";
+                break;
+                case "Grasses":
+                imageSource="/images.corn.";
+                        break;
+            case "Umbels":
+                imageSource="/images.corn.";
+                break;
             
-        }
-    }*/
+        }return imageSource;
+    }
 
 }
