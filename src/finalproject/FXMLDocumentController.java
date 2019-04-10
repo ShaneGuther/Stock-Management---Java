@@ -58,7 +58,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
-    private LoginWindowController loginWindow;
+    //private LoginWindowController loginWindow;
     
     FileManagement manager = new FileManagement();
     
@@ -133,8 +133,6 @@ public class FXMLDocumentController implements Initializable {
 //        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
          stage.setOnCloseRequest(e -> {
          addBtn.setDisable(false); 
-         
-           
         });
         
     }
