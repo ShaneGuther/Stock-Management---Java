@@ -36,8 +36,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button updBtn;
     @FXML
-   // private TableColumn<Integer, Integer> itemID;
-   // @FXML
+    private TableColumn<Integer, Integer> itemID;
+    @FXML
     private TableColumn<Crop, String> itemName;
     @FXML
     private TableColumn<Crop, String> itemType;
@@ -59,7 +59,7 @@ public class FXMLDocumentController implements Initializable {
     
     FileManagement manager = new FileManagement();
     
-    ObservableList<Crop> list = FXCollections.observableArrayList(new Crop("corn", "wheat", 2, 1.2, "g"));
+    ObservableList<Crop> list = FXCollections.observableArrayList(new Crop(4, "corn", "wheat", 2, 1.2, "g"));
     //new Crop("corn","wheat",1,2.2,'g')
     private AddWindowController add;
     private DeleteWindowController delete;
@@ -80,6 +80,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addBtnHandler(ActionEvent event) throws IOException {
+        tableView.setItems(list);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("AddWindow.fxml"));
         Parent root = (Parent)loader.load();
@@ -159,6 +160,7 @@ public class FXMLDocumentController implements Initializable {
     
     public void showData(){
         manager.fileReading(list);
+        itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
         pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
@@ -166,5 +168,6 @@ public class FXMLDocumentController implements Initializable {
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
         tableView.setItems(list);
     }
+    //public void refreshTable();
 }
 
