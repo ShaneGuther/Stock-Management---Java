@@ -59,6 +59,8 @@ public class FXMLDocumentController implements Initializable {
     TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
     private static FXMLDocumentController controller;
+    //private LoginWindowController loginWindow;
+    
     FileManagement manager = new FileManagement();
     
     ObservableList<Crop> list = FXCollections.observableArrayList();
@@ -101,6 +103,10 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
+       //loginName.setText(loginWindow.getName());
+       
+       
        showData();
        onEdit();
        //list.setAdd();
@@ -126,19 +132,15 @@ public class FXMLDocumentController implements Initializable {
         add.setAdd(this);
         addBtn.setDisable(true);
 
-        stage.setOnCloseRequest(e -> {
-        addBtn.setDisable(false); 
-        showData();
-        });
+        
       
         stage.setOnHidden(e -> {
         addBtn.setDisable(false); 
         showData();
             
         });
-       
-        
     }
+        
 
 
     @FXML
@@ -225,13 +227,11 @@ public class FXMLDocumentController implements Initializable {
         tableView.setItems(list);
         
   
+   
+    
+
     }
-    
-    
 }
-    
-  
- 
 
  
 
@@ -243,3 +243,5 @@ public class FXMLDocumentController implements Initializable {
     
 
 
+    
+    
