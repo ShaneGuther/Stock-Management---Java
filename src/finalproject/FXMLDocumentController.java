@@ -58,6 +58,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
+    private LoginWindowController loginWindow;
     
     FileManagement manager = new FileManagement();
     
@@ -79,8 +80,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text sideID;
     
- 
-  
+   
+    
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -89,6 +90,10 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
+       //loginName.setText(loginWindow.getName());
+       
+       
        showData();
     }    
 
@@ -128,6 +133,7 @@ public class FXMLDocumentController implements Initializable {
 //        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
          stage.setOnCloseRequest(e -> {
          addBtn.setDisable(false); 
+         
            
         });
         
@@ -197,6 +203,10 @@ public class FXMLDocumentController implements Initializable {
         tableView.setItems(list);
         
   
+    }
+
+    void setAdd(LoginWindowController aThis) {
+         
     }
 }
     

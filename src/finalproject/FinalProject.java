@@ -19,10 +19,10 @@ public class FinalProject extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        //Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Agricultural Stock Management - Login");
         stage.setScene(scene);
         stage.show();
     }

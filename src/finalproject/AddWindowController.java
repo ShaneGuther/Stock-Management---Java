@@ -7,6 +7,7 @@ package finalproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -75,7 +76,7 @@ public class AddWindowController implements Initializable {
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
-        
+       
     }
     
     @FXML
