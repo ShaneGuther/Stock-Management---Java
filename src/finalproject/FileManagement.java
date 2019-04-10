@@ -50,14 +50,14 @@ public class FileManagement {
             BufferedReader br = new BufferedReader(fr);            
                 while((line = br.readLine())!=null) {
                     String[] record = line.split(",");
-                    Integer itemId = Integer.parseInt(record[0].trim());
+                    //Integer itemId = Integer.parseInt(record[0].trim());
                     String name = record[1].trim();
                     String type = record[2].trim();
                     Integer quantity = Integer.parseInt(record[3].trim());
                     Double price = Double.parseDouble(record[4].trim());
                     String fieldSect = record[5].trim();
                     //Crop oldCrop = new Crop(name, type, quantity, price, fieldSect);
-                    a.add(new Crop(itemId, name, type, quantity, price, fieldSect));
+                    a.add(new Crop((a.size()+1), name, type, quantity, price, fieldSect));
                 }
                 br.close();
             
@@ -68,7 +68,7 @@ public class FileManagement {
                 }finally{
                 }
     }
-    public void fileWriting(ObservableList b, Integer id, String name, String type, int quantity, double price, String fieldSect){
+    public void fileWriting(ObservableList b, String name, String type, int quantity, double price, String fieldSect){
         //Scanner input = new Scanner(System.in);
         //ArrayList<Student> studentList = new ArrayList<>();
         //1. create file object
@@ -78,16 +78,16 @@ public class FileManagement {
         PrintWriter output = null;
         try{
             output = new PrintWriter(new FileWriter(file, true));
-            Integer itemId = id;
+            //Integer itemId = id;
             String itemName = name;
             String itemType = type;
             Integer itemQuant = quantity;       
             Double itemPrice = price;
             String itemSect = fieldSect;
-            Crop newCrop = new Crop(itemId, itemName, itemType, itemQuant, itemPrice, itemSect);
+            Crop newCrop = new Crop((b.size()+1), itemName, itemType, itemQuant, itemPrice, itemSect);
       
                 b.add(newCrop);
-            output.println(itemId + "," + itemName + ","+ itemType + "," + itemQuant + 
+            output.println((b.size()+1) + "," + itemName + ","+ itemType + "," + itemQuant + 
                     "," + itemPrice + "," + fieldSect);
         
         }catch(FileNotFoundException e){
@@ -103,7 +103,7 @@ public class FileManagement {
         }
     }
     public void itemDeleting(ObservableList a, int id){
-        //a.remove(new Crop(1, "h", "g", 1, 5.1, "j"));
+
     }
 }
        
