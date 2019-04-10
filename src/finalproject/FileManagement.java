@@ -68,7 +68,7 @@ public class FileManagement {
                 }finally{
                 }
     }
-    public void fileWriting(ObservableList b, Integer id, String name, String type, int quantity, double price, String fieldSect){
+    public void fileWriting(ObservableList <Crop> b){
         //Scanner input = new Scanner(System.in);
         //ArrayList<Student> studentList = new ArrayList<>();
         //1. create file object
@@ -78,17 +78,11 @@ public class FileManagement {
         PrintWriter output = null;
         try{
             output = new PrintWriter(new FileWriter(file, true));
-            Integer itemId = id;
-            String itemName = name;
-            String itemType = type;
-            Integer itemQuant = quantity;       
-            Double itemPrice = price;
-            String itemSect = fieldSect;
-            Crop newCrop = new Crop(itemId, itemName, itemType, itemQuant, itemPrice, itemSect);
-      
-                b.add(newCrop);
-            output.println(itemId + "," + itemName + ","+ itemType + "," + itemQuant + 
-                    "," + itemPrice + "," + fieldSect);
+            for(int i=0;i <b.size();i++){
+                Crop cropTemp= b.get(i);
+                output.println(cropTemp.toString());
+            }
+           
         
         }catch(FileNotFoundException e){
             System.out.println("File cannot be created " + e);
@@ -102,8 +96,17 @@ public class FileManagement {
                 output.close();
         }
     }
-    public void itemDeleting(ObservableList a, int id){
-        a.remove(id);
-    }
+    public ObservableList itemDeleting(ObservableList <Crop>a, int id){
+         for(int i=0;i <a.size();i++){
+                Crop cropTemp= a.get(i);
+                if (cropTemp.getItemId()==id){
+                    a.remove(i);
+                }
+                
+        
+    }return a;
+    
 }
+}
+
        
