@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,7 +28,6 @@ public class AddWindowController implements Initializable {
     private Button cancelBtn;
     @FXML
     private TextField tfID;
-    @FXML
     private TextField tfName;
     @FXML
     private TextField tfType;
@@ -39,10 +39,12 @@ public class AddWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
-    @FXML
     private FXMLDocumentController doc = new FXMLDocumentController();
     
     FileManagement manager = new FileManagement();
+    //String[] cbArray
+    @FXML
+    private ComboBox<String> cbName;
 
     /**
      * Initializes the controller class.
@@ -57,7 +59,7 @@ public class AddWindowController implements Initializable {
     @FXML
     private void acptBtnHandler(ActionEvent event) {
         try{
-    manager.fileWriting(doc.list, Integer.parseInt(tfID.getText()), tfName.getText(), tfType.getText(), 
+    manager.fileWriting(doc.list, tfName.getText(), tfType.getText(), 
             Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
             tfSection.getText());
     }catch(Exception e){
@@ -82,7 +84,6 @@ public class AddWindowController implements Initializable {
           
     }
     
-    @FXML
     void setAdd(FXMLDocumentController aThis) {
         
     }
