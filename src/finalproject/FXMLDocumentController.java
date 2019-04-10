@@ -57,7 +57,6 @@ public class FXMLDocumentController implements Initializable {
     private Button delBtn;
     @FXML
     private TableView<Crop> tableView;
-    //private TableColumn<Crop, Boolean> itemAvailability;
     private LoginWindowController loginWindow;
     private static FXMLDocumentController controller;
     
@@ -93,11 +92,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    
-       //loginName.setText(loginWindow.getName());
-       
-       
+    public void initialize(URL url, ResourceBundle rb) { 
        showData();
     }    
 
