@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -51,10 +52,14 @@ public class UpdateWindowController implements Initializable {
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        stage.close();
     }
     
     @FXML
