@@ -57,12 +57,13 @@ public class AddWindowController implements Initializable {
     @FXML
     private void acptBtnHandler(ActionEvent event) {
         try{
-    manager.fileWriting(doc.list, tfName.getText(), tfType.getText(), 
+    manager.fileWriting(doc.list, Integer.parseInt(tfID.getText()), tfName.getText(), tfType.getText(), 
             Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
             tfSection.getText());
     }catch(Exception e){
         System.out.println("Error Occurred" + e);
     }finally{
+        tfID.setText("");
         tfName.setText(""); 
         tfType.setText("");
         tfQuantity.setText("");
@@ -70,7 +71,7 @@ public class AddWindowController implements Initializable {
         tfSection.setText("");
         
         }
-        doc.showData();
+        //doc.showData();
     }
 
     @FXML
