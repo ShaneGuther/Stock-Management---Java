@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -64,8 +66,20 @@ public class FXMLDocumentController implements Initializable {
     private AddWindowController add;
     private DeleteWindowController delete;
     private UpdateWindowController update;
+    @FXML
+    private Text sideName;
+    @FXML
+    private Text sideType;
+    @FXML
+    private Text sideQuantity;
+    @FXML
+    private Text sidePrice;
+    @FXML
+    private Text sideFieldSection;
+    @FXML
+    private Text sideID;
     
-   
+ 
   
     
     private void handleButtonAction(ActionEvent event) {
@@ -157,6 +171,20 @@ public class FXMLDocumentController implements Initializable {
            
         });
     }
+    @FXML
+     public void onEdit() {
+    // check the table's selected item and get selected item
+    if (tableView.getSelectionModel().getSelectedItem() != null) {
+        Crop selectedCrop = tableView.getSelectionModel().getSelectedItem();
+        sideName.setText(selectedCrop.getItemName());
+        sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
+        sideType.setText(selectedCrop.getItemType());
+        sidePrice.setText((selectedCrop.getPricePerPound().toString()));
+        sideFieldSection.setText((selectedCrop.getFieldSection()));
+        sideID.setText((selectedCrop.getItemId().toString()));
+
+    }
+     }
     
     public void showData(){
         manager.fileReading(list);
@@ -167,7 +195,21 @@ public class FXMLDocumentController implements Initializable {
         itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
         tableView.setItems(list);
+        
+  
     }
-    //public void refreshTable();
 }
+    
+  
+ 
+
+ 
+
+
+
+
+    
+
+    
+
 
