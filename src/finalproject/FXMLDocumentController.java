@@ -58,7 +58,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
-    
+    private static FXMLDocumentController controller;
     FileManagement manager = new FileManagement();
     
     ObservableList<Crop> list = FXCollections.observableArrayList();
@@ -79,6 +79,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text sideID;
     
+    FXMLLoader loader = new FXMLLoader();
+    DeleteWindowController del;
+
+    
+    
+    
+    
+ 
+
+//    public FXMLDocumentController(TableView t) {
+//        tableView = t;
+//    }
  
   
     
@@ -91,8 +103,14 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        showData();
        onEdit();
+       //list.setAdd();
     }    
-
+    public void setList(ObservableList list){
+        this.list = list;
+    }
+    public ObservableList getList(){
+        return list;
+    }
     @FXML
     private void addBtnHandler(ActionEvent event) throws IOException {
         tableView.setItems(list);
@@ -166,9 +184,14 @@ public class FXMLDocumentController implements Initializable {
             
         });
     }
+    
+    void setAdd(FXMLDocumentController aThis){
+        
+    }
 
     @FXML
     private void delBtnHandler(ActionEvent event) throws IOException {
+        
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("DeleteWindow.fxml"));
         Parent root = (Parent)loader.load();
@@ -177,9 +200,10 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Delete Window Controller");
         stage.show();
-        delete = loader.getController();
+        //DeleteWindowController delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
+        
         
         stage.setOnCloseRequest(e -> {
         delBtn.setDisable(false); 
@@ -191,18 +215,20 @@ public class FXMLDocumentController implements Initializable {
         });
     }
     @FXML
-     public void onEdit() {
+     public Crop onEdit() {
+         Crop selectedCrop = null;
     // check the table's selected item and get selected item
     if (tableView.getSelectionModel().getSelectedItem() != null) {
-        Crop selectedCrop = tableView.getSelectionModel().getSelectedItem();
+        selectedCrop = tableView.getSelectionModel().getSelectedItem();
         sideName.setText(selectedCrop.getItemName());
         sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
         sideType.setText(selectedCrop.getItemType());
         sidePrice.setText((selectedCrop.getPricePerPound().toString()));
         sideFieldSection.setText((selectedCrop.getFieldSection()));
         sideID.setText((selectedCrop.getItemId().toString()));
-
+        
     }
+    return selectedCrop;
      }
     
     public void showData(){
@@ -219,6 +245,8 @@ public class FXMLDocumentController implements Initializable {
         
   
     }
+    
+    
 }
     
   
