@@ -41,7 +41,7 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="tableView" onMouseClicked="#onEdit" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" onMouseClicked="#onSelect" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="itemID" prefWidth="120.36921811103821" text="Item ID" />
           <TableColumn fx:id="itemName" prefWidth="100.92308807373047" text="Item Name" />
