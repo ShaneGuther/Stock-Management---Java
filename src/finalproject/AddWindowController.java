@@ -56,9 +56,8 @@ public class AddWindowController implements Initializable {
     @FXML
     private void acptBtnHandler(ActionEvent event) {
         try{
-    manager.fileWriting(doc.list, Integer.parseInt(tfID.getText()), tfName.getText(), tfType.getText(), 
-            Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
-            tfSection.getText());
+    manager.fileWriting(doc.list);
+            
     }catch(Exception e){
         System.out.println("Error Occurred" + e);
     }finally{
