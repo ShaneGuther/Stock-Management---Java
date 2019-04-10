@@ -42,6 +42,7 @@ public class LoginWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        FXMLDoc = FXMLDocumentController.getController();
     }    
 
     @FXML
@@ -56,6 +57,7 @@ public class LoginWindowController implements Initializable {
         stage.show();
         FXMLDoc = loader.getController();
         FXMLDoc.setAdd(this);
+        FXMLDoc.setName();
         adminBtn.setDisable(true);
         stage.setOnCloseRequest(e -> {
          adminBtn.setDisable(false); 
