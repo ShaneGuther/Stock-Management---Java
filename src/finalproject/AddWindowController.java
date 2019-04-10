@@ -81,9 +81,7 @@ public class AddWindowController implements Initializable {
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
-          Stage stage = (Stage) cancelBtn.getScene().getWindow();
-          stage.close();
-          
+       
     }
     
     void setAdd(FXMLDocumentController aThis) {

@@ -58,7 +58,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
-    private static FXMLDocumentController controller;
     //private LoginWindowController loginWindow;
     
     FileManagement manager = new FileManagement();
@@ -81,20 +80,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text sideID;
     
-    FXMLLoader loader = new FXMLLoader();
-    DeleteWindowController del;
-
+   
     
-    
-    
-    
- 
-
-//    public FXMLDocumentController(TableView t) {
-//        tableView = t;
-//    }
- 
-  
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -133,11 +120,15 @@ public class FXMLDocumentController implements Initializable {
         addBtn.setDisable(true);
 
         
-      
-        stage.setOnHidden(e -> {
-        addBtn.setDisable(false); 
-        showData();
-            
+
+       
+          // tableView.getColumns().addAll(itemType, itemQuantity, pricePerPound, fieldSection);
+//        //this.itemName.setCellValueFactory(cellData -> cellData.getValue().String());
+//        this.itemName.setCellValueFactory(new PropertyValueFactory<Crop, String>("name"));
+//        this.itemType.setCellValueFactory(cellData -> cellData.getValue().keyProperty());
+//        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
+         stage.setOnCloseRequest(e -> {
+         addBtn.setDisable(false); 
         });
     }
         
@@ -225,11 +216,10 @@ public class FXMLDocumentController implements Initializable {
         itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
         tableView.setItems(list);
-        
-  
-   
-    
+    }
 
+    void setAdd(LoginWindowController aThis) {
+         
     }
 }
 
