@@ -13,8 +13,9 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Pat
  */
 public class Crop {
-    private int itemId  = 0;
+    //private int itemId  = 0;
     //private String itemName;
+    private final SimpleIntegerProperty itemId;
     private final SimpleStringProperty itemName;
     //private String itemType;
     private final SimpleStringProperty itemType;
@@ -35,7 +36,8 @@ public class Crop {
 //        this.pricePerPound = pricePerPound;
 //        this.fieldSection = fieldSection;
 //    }    
-    public Crop(String itemName, String itemType, Integer itemQuantity, Double pricePerPound, String fieldSection){
+    public Crop(Integer itemId, String itemName, String itemType, Integer itemQuantity, Double pricePerPound, String fieldSection){
+        this.itemId = new SimpleIntegerProperty(itemId);
         this.itemName = new SimpleStringProperty(itemName);
         this.itemType = new SimpleStringProperty(itemType);
         this.itemQuantity = new SimpleIntegerProperty(itemQuantity);
@@ -48,7 +50,7 @@ public class Crop {
     }
 
     public void setItemId(int itemId) {
-        //this.itemId.set(itemId);
+        this.itemId.set(itemId);
     }
 
     public void setItemName(String name) {
@@ -75,9 +77,9 @@ public class Crop {
         return fieldSection.get();
     }
 
-//    public int getItemId() {
-//        return itemId;
-//    }
+    public Integer getItemId() {
+        return itemId.get();
+    }
 
     public String getItemName() {
         return itemName.get();
@@ -87,7 +89,7 @@ public class Crop {
         return itemType.get();
     }
 
-    public double getItemQuantity() {
+    public Integer getItemQuantity() {
         return itemQuantity.get();
     }
 
@@ -95,13 +97,13 @@ public class Crop {
 //        return itemAvailability;
 //    }
 
-    public double getPricePerPound() {
+    public Double getPricePerPound() {
         return pricePerPound.get();
     }
 
     @Override
     public String toString() {
-        return itemName + "," + itemType +"," + itemQuantity + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
+        return itemId + "," + itemName + "," + itemType +"," + itemQuantity + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
     }
 
 
