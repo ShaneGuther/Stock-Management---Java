@@ -47,6 +47,7 @@ public class LoginWindowController implements Initializable {
 
     @FXML
     private void adminBtnHandler(ActionEvent event) throws IOException {
+        //FXMLDoc.setType("Admin: ");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
         Parent root = (Parent)loader.load();
@@ -57,18 +58,20 @@ public class LoginWindowController implements Initializable {
         stage.show();
         FXMLDoc = loader.getController();
         FXMLDoc.setAdd(this);
-        FXMLDoc.setName();
         adminBtn.setDisable(true);
         stage.setOnCloseRequest(e -> {
          adminBtn.setDisable(false); 
            
         });
+        FXMLDoc.setName("Administrator");
+        FXMLDoc.setType("Admin: ");
     }
 
     @FXML
     private void userBtnHandler(ActionEvent event) throws IOException {
         boolean validInput = false;
-        
+        //FXMLDoc.setType("User: ");
+        //FXMLDoc.setName("User");
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Enter a Username");
         dialog.setHeaderText("Your username must be a maximum of 12 characters.");
@@ -106,6 +109,8 @@ public class LoginWindowController implements Initializable {
             alert.setContentText("Please enter a valid username!(Maximum 12 characters)"); 
             alert.showAndWait();
         }
+        FXMLDoc.setName(dialog.getResult());
+        FXMLDoc.setType("User:");
     }
     
 }
