@@ -7,11 +7,13 @@ package finalproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -39,7 +41,11 @@ public class DeleteWindowController implements Initializable {
     @FXML
     private TextField tfSection;
     private FXMLDocumentController doc = new FXMLDocumentController();
-
+    @FXML
+    private AnchorPane deleteWindow;
+    
+    private ObservableList<Crop> list;
+    FileManagement file = new FileManagement();
     /**
      * Initializes the controller class.
      */
@@ -48,16 +54,23 @@ public class DeleteWindowController implements Initializable {
         // TODO
         
     }    
-
+    public void setData(ObservableList list){
+        this.list = list;
+    }
+    public ObservableList getData(){
+        return list;
+    }
     @FXML
-    private void acptBtnHandler(ActionEvent event) {
+    private ObservableList acptBtnHandler(ActionEvent event) {
+        
+        return file.itemDeleting(doc.getData(), 1);
+        
     }
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
     }
     
-    @FXML
     void setAdd(FXMLDocumentController aThis) {
         
     }
