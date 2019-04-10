@@ -7,6 +7,7 @@ package finalproject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,8 +77,11 @@ public class LoginWindowController implements Initializable {
         dialog.setTitle("Enter a Username");
         dialog.setHeaderText("Your username must be a maximum of 12 characters.");
         dialog.setContentText("Please enter a username: ");
-        dialog.showAndWait();
-        String result = dialog.getResult();
+        Optional<String> re = dialog.showAndWait();
+        
+        if (!re.isPresent()) return;
+        String result = re.get(); //dialog.getResult();
+        
         if(result.length() < 13){
             validInput = true;
         }else if(result.isEmpty() == true){
@@ -85,8 +89,6 @@ public class LoginWindowController implements Initializable {
         }else{
             validInput = false;
         }
-
-        
         if(validInput == true){
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
@@ -100,17 +102,29 @@ public class LoginWindowController implements Initializable {
             FXMLDoc.setAdd(this);
             userBtn.setDisable(true);
             stage.setOnCloseRequest(e -> {
+            stage.close();
+            });
+            stage.setOnCloseRequest(e -> {
              userBtn.setDisable(false);     
             });
+            if(result.isEmpty() == true){
+                FXMLDoc.setName("User");
+            }else{
+                FXMLDoc.setName(dialog.getResult());
+            }
+            FXMLDoc.setType("User:");
+            FXMLDoc.disableAddBtn();
+            FXMLDoc.disableUpdBtn();
+            FXMLDoc.disableDelBtn();
+            
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR); 
             alert.setTitle("Error logging in");
             alert.setHeaderText("You entered an invalid username!");
             alert.setContentText("Please enter a valid username!(Maximum 12 characters)"); 
             alert.showAndWait();
+            alert.close();
         }
-        FXMLDoc.setName(dialog.getResult());
-        FXMLDoc.setType("User:");
     }
     
 }
