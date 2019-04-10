@@ -14,7 +14,7 @@
    <top>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" style="-fx-border-color: Black;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="loginType" alignment="CENTER" prefHeight="35.0" prefWidth="52.0" text="Admin:" translateX="-190.0">
+            <Label fx:id="loginType" alignment="CENTER" prefHeight="35.0" prefWidth="52.0" text="User:" translateX="-190.0">
                <font>
                   <Font size="13.0" />
                </font>
