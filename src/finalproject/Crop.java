@@ -106,5 +106,16 @@ public class Crop {
         return itemId + "," + itemName + "," + itemType +"," + itemQuantity + "," + pricePerPound + "," + pricePerPound + "," + fieldSection;
     }
 
+   /* public String cropImage(){
+        String imageSource="";
+        switch (itemType){
+            case "Nightshade":
+                imageSource="/images.corn."
+                        break;
+            case "Legume":
+                
+            
+        }
+    }*/
 
 }
