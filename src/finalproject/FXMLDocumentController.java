@@ -56,7 +56,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button delBtn;
     @FXML
-    private TableView<Crop> tableView;
+    TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
     
     FileManagement manager = new FileManagement();
@@ -90,6 +90,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        showData();
+       onEdit();
     }    
 
     @FXML
@@ -205,6 +206,7 @@ public class FXMLDocumentController implements Initializable {
      }
     
     public void showData(){
+        //Clear table, read from file and populate tableview with data from the observable list
         tableView.getItems().clear();
         manager.fileReading(list);
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
