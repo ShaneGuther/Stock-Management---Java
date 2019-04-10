@@ -39,7 +39,7 @@ public class DeleteWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
-    private FXMLDocumentController doc = new FXMLDocumentController();
+    private FXMLDocumentController doc;
 
     /**
      * Initializes the controller class.
@@ -47,6 +47,7 @@ public class DeleteWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        deleteSelected();
         
     }    
 
@@ -64,7 +65,15 @@ public class DeleteWindowController implements Initializable {
     
     @FXML
     void setAdd(FXMLDocumentController aThis) {
-        
+    }
+    public void deleteSelected(){
+    Crop selectedCrop = doc.tableView.getSelectionModel().getSelectedItem();
+        tfName.setText(selectedCrop.getItemName());
+        tfType.setText((selectedCrop.getItemQuantity().toString()));
+        tfQuantity.setText(selectedCrop.getItemType());
+        tfPrice.setText((selectedCrop.getPricePerPound().toString()));
+        tfSection.setText((selectedCrop.getFieldSection()));
+        tfID.setText((selectedCrop.getItemId().toString()));
     }
     
 }
