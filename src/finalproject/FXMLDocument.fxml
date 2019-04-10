@@ -40,7 +40,7 @@
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
         <columns>
-<!--          <TableColumn fx:id="itemID" prefWidth="120.36921811103821" text="Item ID" />-->
+          <TableColumn fx:id="itemID" prefWidth="120.36921811103821" text="Item ID" />
           <TableColumn fx:id="itemName" prefWidth="100.92308807373047" text="Item Name" />
             <TableColumn fx:id="itemType" minWidth="7.38458251953125" prefWidth="71.13848876953125" text="Type" />
             <TableColumn fx:id="itemQuantity" prefWidth="107.56924438476562" text="Quantity(lb)" />
