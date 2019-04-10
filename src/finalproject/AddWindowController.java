@@ -7,14 +7,11 @@ package finalproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -29,6 +26,7 @@ public class AddWindowController implements Initializable {
     private Button cancelBtn;
     @FXML
     private TextField tfID;
+    @FXML
     private TextField tfName;
     @FXML
     private TextField tfType;
@@ -40,12 +38,10 @@ public class AddWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
+    @FXML
     private FXMLDocumentController doc = new FXMLDocumentController();
     
     FileManagement manager = new FileManagement();
-    //String[] cbArray
-    @FXML
-    private ComboBox<String> cbName;
 
     /**
      * Initializes the controller class.
@@ -55,15 +51,13 @@ public class AddWindowController implements Initializable {
         // TODO
         //doc.list.get(doc.list.size()).setItemId(doc.list.size());
         //tfID.setText(doc.list.get(doc.list.size()).toString());
-        
     }    
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
         try{
-    manager.fileWriting(doc.list, tfName.getText(), tfType.getText(), 
-            Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
-            tfSection.getText());
+    manager.fileWriting(doc.list);
+            
     }catch(Exception e){
         System.out.println("Error Occurred" + e);
     }finally{
@@ -75,15 +69,15 @@ public class AddWindowController implements Initializable {
         tfSection.setText("");
         
         }
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
-        stage.close();
+        //doc.showData();
     }
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
-       
+        
     }
     
+    @FXML
     void setAdd(FXMLDocumentController aThis) {
         
     }

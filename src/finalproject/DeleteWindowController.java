@@ -9,8 +9,7 @@ import finalproject.FXMLDocumentController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -45,19 +45,12 @@ public class DeleteWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
-    
-    FileManagement manager = new FileManagement();
-    
-    
-    FXMLLoader loader = new FXMLLoader();
+    private FXMLDocumentController doc = new FXMLDocumentController();
     @FXML
-    FXMLDocumentController doc = new FXMLDocumentController();
+    private AnchorPane deleteWindow;
     
-        
- 
-    
- 
-
+    private ObservableList<Crop> list;
+    FileManagement file = new FileManagement();
     /**
      * Initializes the controller class.
      */
@@ -70,22 +63,18 @@ public class DeleteWindowController implements Initializable {
 //            Logger.getLogger(DeleteWindowController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }    
-
-    @FXML
-    private void acptBtnHandler(ActionEvent event) {
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
-        stage.close();
-        manager.itemDeleting(doc.getList(), Integer.parseInt(tfID.getText()));
+    public void setData(ObservableList list){
+        this.list = list;
     }
-     
+    public ObservableList getData(){
+        return list;
+    }
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
     }
     
-    @FXML
-    void setAdd(FXMLDocumentController aThis)throws IOException {
     }
 //    public void deleteSelected(){
 //        try{
@@ -107,4 +96,7 @@ public class DeleteWindowController implements Initializable {
 //        }
 //    }
     
-}
+//
+//    private ObservableList acptBtnHandler(ActionEvent event) {
+//        
+//        return file.itemDeleting(doc.getData(), 1);
