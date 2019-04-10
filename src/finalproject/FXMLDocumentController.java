@@ -57,8 +57,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button delBtn;
     @FXML
-    private TableView<Crop> tableView;
+    TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
+    //private LoginWindowController loginWindow;
     
     FileManagement manager = new FileManagement();
     
@@ -90,10 +91,13 @@ public class FXMLDocumentController implements Initializable {
     
   @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setList();
-        showData();
     }    
-
+    public void setList(ObservableList list){
+        this.list = list;
+    }
+    public ObservableList getList(){
+        return list;
+    }
     @FXML
     private void addBtnHandler(ActionEvent event) throws IOException {
         tableView.setItems(list);
@@ -108,12 +112,11 @@ public class FXMLDocumentController implements Initializable {
         add = loader.getController();
         add.setAdd(this);
         addBtn.setDisable(true);
-        stage.setOnCloseRequest(e -> {
-        addBtn.setDisable(false); 
-           
+        setList();
+        showData();
         });
-        
     }
+        
 
 
     @FXML
@@ -129,14 +132,27 @@ public class FXMLDocumentController implements Initializable {
         update = loader.getController();
         update.setAdd(this);
         updBtn.setDisable(true);
+        
         stage.setOnCloseRequest(e -> {
         updBtn.setDisable(false); 
+        stage.setOnCloseRequest(e -> {
+        addBtn.setDisable(false); 
            
         });
+        stage.setOnHidden(e -> {
+        updBtn.setDisable(false); 
+        showData();
+            
+        });
+    }
+    
+    void setAdd(FXMLDocumentController aThis){
+        
     }
 
     @FXML
     private void delBtnHandler(ActionEvent event) throws IOException {
+        
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("DeleteWindow.fxml"));
         Parent root = (Parent)loader.load();
@@ -145,30 +161,31 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Delete Window Controller");
         stage.show();
-        delete = loader.getController();
+        //DeleteWindowController delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
+        
+        
         stage.setOnCloseRequest(e -> {
         delBtn.setDisable(false); 
-        deleteControl.setData(list);
-       
-        
+           
         });
     }
     @FXML
-     public void onSelect() {
     // check the table's selected item and get selected item
     if (tableView.getSelectionModel().getSelectedItem() != null) {
-        Crop selectedCrop = tableView.getSelectionModel().getSelectedItem();
+        selectedCrop = tableView.getSelectionModel().getSelectedItem();
         sideName.setText(selectedCrop.getItemName());
         sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
         sideType.setText(selectedCrop.getItemType());
         sidePrice.setText((selectedCrop.getPricePerPound().toString()));
         sideFieldSection.setText((selectedCrop.getFieldSection()));
         sideID.setText((selectedCrop.getItemId().toString()));
-        //itemImage.setImage(selectedCrop.getImage());
-
+        deleteControl.setData(list);
+       
+        
     }
+    return selectedCrop;
      }
      public void setList(){
          this.list=manager.fileReading();
@@ -185,7 +202,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void showData(){
-        
+     public void onSelect() {
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
@@ -193,14 +210,13 @@ public class FXMLDocumentController implements Initializable {
         itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
         tableView.setItems(list);
-        
-  
+    }
+
+    void setAdd(LoginWindowController aThis) {
+         
     }
     
 }
-    
-  
- 
 
  
 
@@ -211,4 +227,8 @@ public class FXMLDocumentController implements Initializable {
 
     
 
+
+    
+    
+        //itemImage.setImage(selectedCrop.getImage());
 

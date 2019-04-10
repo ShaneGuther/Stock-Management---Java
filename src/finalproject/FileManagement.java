@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
+import javafx.scene.control.TableView;
 
 /**
  *
@@ -94,18 +94,7 @@ public class FileManagement {
                 output.close();
         }
     }
-    public ObservableList itemDeleting(ObservableList <Crop>a, int id){
-         for (Crop temp : a){ 
-               
-                if (temp.getItemId()==id){
-                    a.remove(temp);
-                }
-         
-        
-    }return a;
-    
     }
 }
-
 
        
