@@ -58,7 +58,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     TableView<Crop> tableView;
     //private TableColumn<Crop, Boolean> itemAvailability;
-    //private LoginWindowController loginWindow;
+    private LoginWindowController loginWindow;
+    private static FXMLDocumentController controller;
     
     FileManagement manager = new FileManagement();
     
@@ -80,7 +81,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text sideID;
     
-   
+   public void setName() {
+       loginType.setText("dsfds");
+       loginName.setText("sdfsdfdsf");
+   }
     
     
     private void handleButtonAction(ActionEvent event) {
@@ -220,6 +224,10 @@ public class FXMLDocumentController implements Initializable {
 
     void setAdd(LoginWindowController aThis) {
          
+    }
+    
+    public static FXMLDocumentController getController(){
+        return controller;
     }
 }
 
