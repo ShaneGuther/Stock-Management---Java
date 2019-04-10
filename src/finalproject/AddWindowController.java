@@ -54,6 +54,7 @@ public class AddWindowController implements Initializable {
         // TODO
         //doc.list.get(doc.list.size()).setItemId(doc.list.size());
         //tfID.setText(doc.list.get(doc.list.size()).toString());
+        
     }    
 
     @FXML

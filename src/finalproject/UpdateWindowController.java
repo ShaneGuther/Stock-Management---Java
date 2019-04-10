@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  */
 public class UpdateWindowController implements Initializable {
     
-    private FXMLDocumentController doc = new FXMLDocumentController();
+    //private FXMLDocumentController doc = new FXMLDocumentController();
 
     @FXML
     private TextField tfID;
