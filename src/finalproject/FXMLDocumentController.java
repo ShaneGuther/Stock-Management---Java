@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -57,17 +58,16 @@ public class FXMLDocumentController implements Initializable {
     private Button delBtn;
     @FXML
     TableView<Crop> tableView;
-    //private TableColumn<Crop, Boolean> itemAvailability;
-    private LoginWindowController loginWindow;
-    private static FXMLDocumentController controller;
-    
+
     FileManagement manager = new FileManagement();
     
     ObservableList<Crop> list = FXCollections.observableArrayList();
-    //new Crop("corn","wheat",1,2.2,'g')
+ 
     private AddWindowController add;
-    private DeleteWindowController delete;
+    private static FXMLDocumentController controller;
+    private static DeleteWindowController delete;
     private UpdateWindowController update;
+    private LoginWindowController loginWindow;
     @FXML
     private Text sideName;
     @FXML
@@ -80,21 +80,20 @@ public class FXMLDocumentController implements Initializable {
     private Text sideFieldSection;
     @FXML
     private Text sideID;
+    @FXML
+    private ImageView itemImage;
     
    public void setName() {
        loginType.setText("dsfds");
        loginName.setText("sdfsdfdsf");
    }
-    
-    
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+   public ObservableList getList(){
+       return list;
+   }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
+        delete = DeleteWindowController.getControllerTwo();
        //loginName.setText(loginWindow.getName());
        
        
@@ -102,12 +101,12 @@ public class FXMLDocumentController implements Initializable {
        onEdit();
        //list.setAdd();
     }    
-    public void setList(ObservableList list){
-        this.list = list;
-    }
-    public ObservableList getList(){
-        return list;
-    }
+//    public void setList(ObservableList list){
+//        this.list = list;
+//    }
+//    public ObservableList getList(){
+//        return list;
+//    }
     @FXML
     private void addBtnHandler(ActionEvent event) throws IOException {
         tableView.setItems(list);
@@ -122,17 +121,8 @@ public class FXMLDocumentController implements Initializable {
         add = loader.getController();
         add.setAdd(this);
         addBtn.setDisable(true);
-
-        
-
-       
-          // tableView.getColumns().addAll(itemType, itemQuantity, pricePerPound, fieldSection);
-//        //this.itemName.setCellValueFactory(cellData -> cellData.getValue().String());
-//        this.itemName.setCellValueFactory(new PropertyValueFactory<Crop, String>("name"));
-//        this.itemType.setCellValueFactory(cellData -> cellData.getValue().keyProperty());
-//        this.itemQuantity.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
-         stage.setOnCloseRequest(e -> {
-         addBtn.setDisable(false); 
+        stage.setOnCloseRequest(e -> {
+        addBtn.setDisable(false); 
         });
     }
         
@@ -163,9 +153,7 @@ public class FXMLDocumentController implements Initializable {
         });
     }
     
-    void setAdd(FXMLDocumentController aThis){
-        
-    }
+
 
     @FXML
     private void delBtnHandler(ActionEvent event) throws IOException {
@@ -178,10 +166,11 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Delete Window Controller");
         stage.show();
-        //DeleteWindowController delete = loader.getController();
+        DeleteWindowController delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
         
+        delete.setData(list);
         
         stage.setOnCloseRequest(e -> {
         delBtn.setDisable(false); 
@@ -211,6 +200,7 @@ public class FXMLDocumentController implements Initializable {
     
     public void showData(){
         //Clear table, read from file and populate tableview with data from the observable list
+        
         tableView.getItems().clear();
         manager.fileReading(list);
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
@@ -219,11 +209,20 @@ public class FXMLDocumentController implements Initializable {
         pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
         itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
-        tableView.setItems(list);
+    tableView.setItems(list);
     }
 
+    void setAdd(FXMLDocumentController aThis){
+        
+    }
     void setAdd(LoginWindowController aThis) {
          
+    }
+    void setAdd(DeleteWindowController aThis){
+        
+    }
+    public void resetList(ObservableList list){
+        this.list = list;
     }
     
     public static FXMLDocumentController getController(){

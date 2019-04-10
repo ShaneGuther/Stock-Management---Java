@@ -43,9 +43,11 @@ public class AddWindowController implements Initializable {
     private FXMLDocumentController doc = new FXMLDocumentController();
     
     FileManagement manager = new FileManagement();
-    //String[] cbArray
+    String[] cbArray = {"Root", "Fruits", "Vine", "Plant", "Stems", "Beans", "Leaves"};
     @FXML
     private ComboBox<String> cbName;
+    //cbName.getItems().addAll(cbArray);
+    
 
     /**
      * Initializes the controller class.

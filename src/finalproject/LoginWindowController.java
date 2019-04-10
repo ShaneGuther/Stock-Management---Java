@@ -97,7 +97,7 @@ public class LoginWindowController implements Initializable {
             FXMLDoc.setAdd(this);
             userBtn.setDisable(true);
             stage.setOnCloseRequest(e -> {
-             userBtn.setDisable(false);     
+            userBtn.setDisable(false);     
             });
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR); 

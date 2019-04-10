@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,15 +48,18 @@ public class DeleteWindowController implements Initializable {
     private TextField tfSection;
     
     FileManagement manager = new FileManagement();
-    
+    ObservableList<Crop> list;
     
     FXMLLoader loader = new FXMLLoader();
     @FXML
-    FXMLDocumentController doc = new FXMLDocumentController();
+    private static FXMLDocumentController FXMLDoc;
+    private static DeleteWindowController delCon;
     
         
  
-    
+    public void setData(ObservableList<Crop> list){ 
+        this.list = list;
+    }
  
 
     /**
@@ -63,19 +67,24 @@ public class DeleteWindowController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//       try {
-//              root =(Parent) loader.load();
-//            loader.setLocation(getClass().getResource("fxmldocument.fxml"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(DeleteWindowController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    FXMLDoc = FXMLDocumentController.getController();
+    //FXMLDoc = loader.getController();
+//    FXMLDoc.setAdd(this);
+    //list2 = FXMLDoc.getList();
+    
     }    
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
-        stage.close();
-        manager.itemDeleting(doc.getList(), Integer.parseInt(tfID.getText()));
+       // FXMLDoc = loader.getController();
+//        FXMLDoc.setAdd(this);
+//        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+//        stage.close();
+          manager.itemDeleting(list, Integer.parseInt(tfID.getText()));
+//        System.out.println(list);
+          //FXMLDoc = loader.getController();
+          //list.remove(list.get(Integer.parseInt(tfID.getText())));
+          //FXMLDoc.resetList(list);
     }
      
     @FXML
@@ -106,5 +115,9 @@ public class DeleteWindowController implements Initializable {
 //            System.out.println("error" + e);
 //        }
 //    }
+    public static DeleteWindowController getControllerTwo(){
+        return delCon;
+    }
+    
     
 }
