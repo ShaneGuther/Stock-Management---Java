@@ -29,8 +29,8 @@ public class AddWindowController implements Initializable {
     private Button cancelBtn;
     @FXML
     private TextField tfID;
-    private TextField tfName;
     @FXML
+    private TextField tfName;
     private TextField tfType;
     @FXML
     private TextField tfQuantity;
@@ -45,8 +45,8 @@ public class AddWindowController implements Initializable {
     FileManagement manager = new FileManagement();
     String[] cbArray = {"Root", "Fruits", "Vine", "Plant", "Stems", "Beans", "Leaves"};
     @FXML
-    private ComboBox<String> cbName;
-    //cbName.getItems().addAll(cbArray);
+    private ComboBox<String> cbType;
+    
     
 
     /**
@@ -57,13 +57,14 @@ public class AddWindowController implements Initializable {
         // TODO
         //doc.list.get(doc.list.size()).setItemId(doc.list.size());
         //tfID.setText(doc.list.get(doc.list.size()).toString());
-        
+        cbType.getItems().addAll(cbArray);
+        cbType.setValue("Corn");
     }    
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
         try{
-    manager.fileWriting(doc.list, tfName.getText(), tfType.getText(), 
+    manager.fileWriting(doc.list, cbType.getValue(), tfName.getText(),
             Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
             tfSection.getText());
     }catch(Exception e){

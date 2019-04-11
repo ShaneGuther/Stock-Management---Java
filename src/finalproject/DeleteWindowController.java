@@ -93,9 +93,7 @@ public class DeleteWindowController implements Initializable {
         stage.close();
     }
     
-    @FXML
-    void setAdd(FXMLDocumentController aThis)throws IOException {
-    }
+    
 //    public void deleteSelected(){
 //        try{
 ////            
@@ -118,6 +116,7 @@ public class DeleteWindowController implements Initializable {
     public static DeleteWindowController getControllerTwo(){
         return delCon;
     }
-    
-    
-}
+    void setAdd(FXMLDocumentController aThis){
+        
+    }
+    }

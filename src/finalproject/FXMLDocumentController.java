@@ -95,10 +95,9 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         delete = DeleteWindowController.getControllerTwo();
        //loginName.setText(loginWindow.getName());
-       
-       
-       showData();
-       onEdit();
+             
+        showData();
+//       onEdit();
        //list.setAdd();
     }    
 //    public void setList(ObservableList list){
@@ -144,16 +143,15 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setOnCloseRequest(e -> {
         updBtn.setDisable(false); 
-        showData();
+        });
+        stage.setOnCloseRequest(e -> {
+        addBtn.setDisable(false); 
         });
         stage.setOnHidden(e -> {
         updBtn.setDisable(false); 
-        showData();
-            
+        showData();   
         });
     }
-    
-
 
     @FXML
     private void delBtnHandler(ActionEvent event) throws IOException {
@@ -166,7 +164,7 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Delete Window Controller");
         stage.show();
-        DeleteWindowController delete = loader.getController();
+        delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
         
@@ -182,21 +180,39 @@ public class FXMLDocumentController implements Initializable {
         });
     }
     @FXML
-     public Crop onEdit() {
+     public void onEdit() {
          Crop selectedCrop = null;
-    // check the table's selected item and get selected item
-    if (tableView.getSelectionModel().getSelectedItem() != null) {
-        selectedCrop = tableView.getSelectionModel().getSelectedItem();
-        sideName.setText(selectedCrop.getItemName());
-        sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
-        sideType.setText(selectedCrop.getItemType());
-        sidePrice.setText((selectedCrop.getPricePerPound().toString()));
-        sideFieldSection.setText((selectedCrop.getFieldSection()));
-        sideID.setText((selectedCrop.getItemId().toString()));
         
-    }
-    return selectedCrop;
      }
+    // check the table's selected item and get selected item
+    public void getSelected(){
+//    if (tableView.getSelectionModel().getSelectedItem() != null) {
+//        selectedCrop = tableView.getSelectionModel().getSelectedItem();
+//        sideName.setText(selectedCrop.getItemName());
+//        sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
+//        sideType.setText(selectedCrop.getItemType());
+//        sidePrice.setText((selectedCrop.getPricePerPound().toString()));
+//        sideFieldSection.setText((selectedCrop.getFieldSection()));
+//        sideID.setText((selectedCrop.getItemId().toString()));
+//        deleteControl.setData(list);
+//       }
+        
+    
+  
+}
+//     public void setList(){
+//         this.list=manager.fileReading();
+//         
+//     }
+//    public void setData(Integer id, String name, String type, Integer itemQuantity, Double pricePerPound,String fieldSection){
+//        Crop newCrop= new Crop(id,name,type,itemQuantity,pricePerPound,fieldSection);
+//        list.add(newCrop);
+//        manager.fileWriting(list);
+//        tableView.setItems(list);
+//    }
+    public ObservableList getData(){
+        return list;
+    }
     
     public void showData(){
         //Clear table, read from file and populate tableview with data from the observable list
@@ -212,23 +228,21 @@ public class FXMLDocumentController implements Initializable {
     tableView.setItems(list);
     }
 
-    void setAdd(FXMLDocumentController aThis){
-        
-    }
+//    void setAdd(FXMLDocumentController aThis){
+//        
+//    }
     void setAdd(LoginWindowController aThis) {
          
     }
-    void setAdd(DeleteWindowController aThis){
-        
-    }
-    public void resetList(ObservableList list){
-        this.list = list;
-    }
+//    void setAdd(DeleteWindowController aThis){
+//        
+//    }
     
     public static FXMLDocumentController getController(){
         return controller;
     }
 }
+
 
  
 
