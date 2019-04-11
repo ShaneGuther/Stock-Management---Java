@@ -13,12 +13,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 
 /**
  *
@@ -40,8 +37,8 @@ public class FileManagement {
         
         Scanner fileInput = null;
         String line = "";
-        String file = "farmInfo.csv";
-     FileReader fr = new FileReader(file);
+        String file = "farmInfo.csv";        
+            FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);            
                 while((line = br.readLine())!=null) {
                     String[] record = line.split(",");
@@ -67,7 +64,7 @@ public class FileManagement {
                 finally{
                 }return temp;
     }
-    public void fileWriting(ObservableList <Crop> b){
+    public void fileWriting(ObservableList b, String type, String name, int quantity, double price, String fieldSect){
         //Scanner input = new Scanner(System.in);
         //ArrayList<Student> studentList = new ArrayList<>();
         //1. create file object
@@ -77,11 +74,17 @@ public class FileManagement {
         PrintWriter output = null;
         try{
             output = new PrintWriter(new FileWriter(file, true));
-            for(int i=0;i <b.size();i++){
-                Crop cropTemp= b.get(i);
-                output.println(cropTemp.toString());
-            }
-           
+            //Integer itemId = id;
+            String itemType = type;
+            String itemName = name;
+            Integer itemQuant = quantity;       
+            Double itemPrice = price;
+            String itemSect = fieldSect;
+            Crop newCrop = new Crop((b.size()+1), itemName, itemType, itemQuant, itemPrice, itemSect);
+      
+                b.add(newCrop);
+            output.println((b.size()+1) + "," + itemName + ","+ itemType + "," + itemQuant + 
+                    "," + itemPrice + "," + fieldSect);
         
         }catch(FileNotFoundException e){
             System.out.println("File cannot be created " + e);
@@ -95,7 +98,51 @@ public class FileManagement {
                 output.close();
         }
     }
-    }
-}
+        public ObservableList itemDeleting(ObservableList<Crop> g, Integer id){
+            PrintWriter output = null;
+            try{
+        File file = new File("farmInfo.csv");
+        int count = 0;
+        //output = null;
+        output = new PrintWriter(new FileWriter(file, false));
+        g.remove(g.get(id-1));
+        for(Crop d : g){    
+        count++;
+        output.println(count + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
+        "," + d.getPricePerPound() + "," + d.getFieldSection());
+        }
+            }catch(IOException e){
+             System.out.println("error" + e);
+             }finally{
+                if (output != null) output.close();
+            }
+            return g;
+        }
+        
+        
+        
+        
+        public void itemUpdating(ObservableList<Crop> a, String type, String name, int quantity, double price, String fieldSect){
+                PrintWriter output = null;
+            try{
+        File file = new File("farmInfo.csv");
+        int count1 = 0;
+        //output = null;
+        output = new PrintWriter(new FileWriter(file, false));
+        //a.set(id-1, a.get());
+        for(Crop d : a){
+        count1++;
+        output.println(count1 + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
+        "," + d.getPricePerPound() + "," + d.getFieldSection());
+        }
+            }catch(IOException e){
+             System.out.println("error" + e);
+             }finally{
+                if (output != null) output.close();
+            }
+        
+        }
+        }
+
 
        

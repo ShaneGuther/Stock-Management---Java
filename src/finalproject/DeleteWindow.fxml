@@ -2,13 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="deleteWindow" maxHeight="420.0" maxWidth="360.0" minHeight="420.0" minWidth="360.0" prefHeight="420.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.DeleteWindowController">
+<AnchorPane id="AnchorPane" maxHeight="420.0" maxWidth="360.0" minHeight="420.0" minWidth="360.0" prefHeight="420.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalproject.DeleteWindowController">
    <children>
       <Label layoutX="109.0" layoutY="10.0" prefHeight="41.0" prefWidth="168.0" text="Delete An Item">
          <font>
@@ -21,12 +22,12 @@
       <Label layoutX="86.0" layoutY="53.0" prefHeight="18.0" prefWidth="45.0" text="Item ID:" />
       <VBox alignment="CENTER" layoutX="-1.0" layoutY="71.0" prefHeight="289.0" prefWidth="180.0">
          <children>
-            <Label text="Item Name">
+            <Label text="Item Type">
                <VBox.margin>
                   <Insets bottom="20.0" left="10.0" right="10.0" />
                </VBox.margin>
             </Label>
-            <Label text="Type">
+            <Label text="Item Name">
                <VBox.margin>
                   <Insets bottom="20.0" left="10.0" right="10.0" top="6.0" />
                </VBox.margin>
@@ -70,32 +71,34 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </opaqueInsets>
          <children>
-            <TextField fx:id="tfName">
+            <ComboBox fx:id="cbType" prefHeight="25.0" prefWidth="117.0" />
+            <TextField fx:id="tfType" translateY="10.0">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </TextField>
-            <TextField fx:id="tfType">
+            <TextField fx:id="tfQuantity" translateY="10.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="tfPrice" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfQuantity">
+            <TextField fx:id="tfAvailability" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfPrice">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="tfAvailability">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="tfSection">
+            <TextField fx:id="tfSection" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

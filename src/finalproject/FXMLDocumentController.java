@@ -57,21 +57,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button delBtn;
     @FXML
-    TableView<Crop> tableView;
-    //private TableColumn<Crop, Boolean> itemAvailability;
+    private TableView<Crop> tableView;
     private LoginWindowController loginWindow;
     private static FXMLDocumentController controller;
     
     FileManagement manager = new FileManagement();
     
     ObservableList<Crop> list = FXCollections.observableArrayList();
-    FXMLLoader loader= new FXMLLoader();
+ 
+    private static AddWindowController add;
 
-    
-    //new Crop("corn","wheat",1,2.2,'g')
-    private AddWindowController add;
-    private DeleteWindowController delete;
+    private static DeleteWindowController delete;
     private UpdateWindowController update;
+   
     @FXML
     private Text sideName;
     @FXML
@@ -87,20 +85,46 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ImageView itemImage;
     
-   public void setName() {
-       loginType.setText("dsfds");
-       loginName.setText("sdfsdfdsf");
-   }
+    public void setName(String name) {
+       loginName.setText(name);
+    }
     
-  @Override
+    public void setType(String type) {
+       loginType.setText(type);
+    }
+    
+    public void disableAddBtn(){
+       addBtn.setDisable(true);
+    }
+    
+    public void disableUpdBtn(){
+       updBtn.setDisable(true);
+    }
+    
+    public void disableDelBtn(){
+       delBtn.setDisable(true);
+    }
+   
+    private void handleButtonAction(ActionEvent event) {
+        System.out.println("You clicked me!");
+        label.setText("Hello World!");
+    }
+    
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
+        delete = DeleteWindowController.getControllerTwo();
+       //loginName.setText(loginWindow.getName());
+        getSelected();
+        showData();
+//       onEdit();
+       //list.setAdd();
     }    
-    public void setList(ObservableList list){
-        this.list = list;
-    }
-    public ObservableList getList(){
-        return list;
-    }
+//    public void setList(ObservableList list){
+//        this.list = list;
+//    }
+//    public ObservableList getList(){
+//        return list;
+//    }
     @FXML
     private void addBtnHandler(ActionEvent event) throws IOException {
         tableView.setItems(list);
@@ -114,9 +138,13 @@ public class FXMLDocumentController implements Initializable {
         stage.show();
         add = loader.getController();
         add.setAdd(this);
+        add.setData(list);
         addBtn.setDisable(true);
-        setList();
-        showData();
+        stage.setOnCloseRequest(e -> {
+        addBtn.setDisable(false); 
+        });
+        stage.setOnHidden(e-> {
+            addBtn.setDisable(false);
         });
     
         
@@ -135,22 +163,17 @@ public class FXMLDocumentController implements Initializable {
         update = loader.getController();
         update.setAdd(this);
         updBtn.setDisable(true);
-        
+        update.setData(list);
         stage.setOnCloseRequest(e -> {
         updBtn.setDisable(false); 
+        });
         stage.setOnCloseRequest(e -> {
         addBtn.setDisable(false); 
-           
         });
         stage.setOnHidden(e -> {
         updBtn.setDisable(false); 
-        showData();
-            
+        showData();   
         });
-    }
-    
-    void setAdd(FXMLDocumentController aThis){
-        
     }
 
     @FXML
@@ -164,10 +187,12 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Delete Window Controller");
         stage.show();
-        //DeleteWindowController delete = loader.getController();
+        delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
-        
+        Crop g = new Crop(1, "g", "h", 5, 6.0, "d");
+        delete.setCrops(g);
+        delete.setData(list);
         
         stage.setOnCloseRequest(e -> {
         delBtn.setDisable(false); 
@@ -175,37 +200,46 @@ public class FXMLDocumentController implements Initializable {
         });
     }
     @FXML
+//     public void onEdit() {
+//         Crop selectedCrop = null;
+//        
+//     }
     // check the table's selected item and get selected item
-    if (tableView.getSelectionModel().getSelectedItem() != null) {
-        selectedCrop = tableView.getSelectionModel().getSelectedItem();
+    public Crop getSelected(){
+        Crop f = new Crop(1, "h","g",3,4.1,"h");
+   if (tableView.getSelectionModel().getSelectedItem() != null){
+        Crop selectedCrop = tableView.getSelectionModel().getSelectedItem();
         sideName.setText(selectedCrop.getItemName());
         sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
         sideType.setText(selectedCrop.getItemType());
         sidePrice.setText((selectedCrop.getPricePerPound().toString()));
         sideFieldSection.setText((selectedCrop.getFieldSection()));
         sideID.setText((selectedCrop.getItemId().toString()));
-        deleteControl.setData(list);
-       
+        //deleteControl.setData(list);
+       return selectedCrop;
+   }    
+        return f;
         
-    }
-    return selectedCrop;
-     }
-     public void setList(){
-         this.list=manager.fileReading();
-         
-     }
-    public void setData(Integer id, String name, String type, Integer itemQuantity, Double pricePerPound,String fieldSection){
-        Crop newCrop= new Crop(id,name,type,itemQuantity,pricePerPound,fieldSection);
-        list.add(newCrop);
-        manager.fileWriting(list);
-        tableView.setItems(list);
-    }
-    public ObservableList getData(){
-        return list;
-    }
+}
+//     public void setList(){
+//         this.list=manager.fileReading();
+//         
+//     }
+//    public void setData(Integer id, String name, String type, Integer itemQuantity, Double pricePerPound,String fieldSection){
+//        Crop newCrop= new Crop(id,name,type,itemQuantity,pricePerPound,fieldSection);
+//        list.add(newCrop);
+//        manager.fileWriting(list);
+//        tableView.setItems(list);
+//    }
+//    public ObservableList getData(){
+//        return list;
+//    }
     
     public void showData(){
-     public void onSelect() {
+        //Clear table, read from file and populate tableview with data from the observable list
+        
+        tableView.getItems().clear();
+        manager.fileReading(list);
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
@@ -214,16 +248,15 @@ public class FXMLDocumentController implements Initializable {
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));
         tableView.setItems(list);
     }
-
-    void setAdd(LoginWindowController aThis) {
-         
-    }
     
+    void setAdd(LoginWindowController aThis) {  
+    }
+
     public static FXMLDocumentController getController(){
         return controller;
 }
-}
-}
+
+
  
 
 

@@ -9,6 +9,8 @@ import finalproject.FXMLDocumentController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,26 +47,46 @@ public class DeleteWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
-    private FXMLDocumentController doc = new FXMLDocumentController();
-    @FXML
-    private AnchorPane deleteWindow;
     
-    private ObservableList<Crop> list;
-    FileManagement file = new FileManagement();
+    FileManagement manager = new FileManagement();
+    ObservableList<Crop> list;
+    Crop c;
+    FXMLLoader loader = new FXMLLoader();
+    @FXML
+    private static FXMLDocumentController FXMLDoc;
+    private static DeleteWindowController delCon;
+    
+        
+ 
+    public void setData(ObservableList<Crop> list){ 
+        this.list = list;
+    }
+    public void setCrops(Crop c){
+        this.c = c;
+    }
+ 
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//       try {
-//              root =(Parent) loader.load();
-//            loader.setLocation(getClass().getResource("fxmldocument.fxml"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(DeleteWindowController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    FXMLDoc = FXMLDocumentController.getController();
+    tfName.setText(c.getItemName());
+    
     }    
-    public void setData(ObservableList list){
-        this.list = list;
+
+    @FXML
+    private void acptBtnHandler(ActionEvent event) {
+       // FXMLDoc = loader.getController();
+//        FXMLDoc.setAdd(this);
+//        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+//        stage.close();
+          manager.itemDeleting(list, Integer.parseInt(tfID.getText()));
+//        System.out.println(list);
+          //FXMLDoc = loader.getController();
+          //list.remove(list.get(Integer.parseInt(tfID.getText())));
+          //FXMLDoc.resetList(list);
     }
     public ObservableList getData(){
         return list;
@@ -75,7 +97,7 @@ public class DeleteWindowController implements Initializable {
         stage.close();
     }
     
-    }
+    
 //    public void deleteSelected(){
 //        try{
 ////            
@@ -95,8 +117,10 @@ public class DeleteWindowController implements Initializable {
 //            System.out.println("error" + e);
 //        }
 //    }
-    
-//
-//    private ObservableList acptBtnHandler(ActionEvent event) {
-//        
-//        return file.itemDeleting(doc.getData(), 1);
+    public static DeleteWindowController getControllerTwo(){
+        return delCon;
+    }
+    void setAdd(FXMLDocumentController aThis){
+        
+    }
+    }
