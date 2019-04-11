@@ -57,7 +57,6 @@ public class FXMLDocumentController implements Initializable {
     private Button delBtn;
     @FXML
     private TableView<Crop> tableView;
-    //private TableColumn<Crop, Boolean> itemAvailability;
     private LoginWindowController loginWindow;
     private static FXMLDocumentController controller;
     
@@ -81,10 +80,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text sideID;
     
-   public void setName() {
-       loginType.setText("dsfds");
-       loginName.setText("sdfsdfdsf");
-   }
+    public void setName(String name) {
+       loginName.setText(name);
+    }
+    
+    public void setType(String type) {
+       loginType.setText(type);
+    }
+    
+    public void disableAddBtn(){
+       addBtn.setDisable(true);
+    }
+    
+    public void disableUpdBtn(){
+       updBtn.setDisable(true);
+    }
+    
+    public void disableDelBtn(){
+       delBtn.setDisable(true);
+    }
     
     
     private void handleButtonAction(ActionEvent event) {
