@@ -31,7 +31,7 @@ public class FileManagement {
         
     }
     
-    public ObservableList fileReading(){
+    public ObservableList fileReading(ObservableList a){
         ObservableList<Crop>temp= FXCollections.observableArrayList();
         try{
         
