@@ -60,9 +60,7 @@ public class DeleteWindowController implements Initializable {
     public void setData(ObservableList<Crop> list){ 
         this.list = list;
     }
-    public void setCrops(Crop c){
-        this.c = c;
-    }
+ 
  
 
     /**
@@ -71,21 +69,14 @@ public class DeleteWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     FXMLDoc = FXMLDocumentController.getController();
-//    tfName.setText(c.getItemName());
     
     }    
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
-       // FXMLDoc = loader.getController();
-//        FXMLDoc.setAdd(this);
-//        Stage stage = (Stage) cancelBtn.getScene().getWindow();
-//        stage.close();
           manager.itemDeleting(list, Integer.parseInt(tfID.getText()));
-//        System.out.println(list);
-          //FXMLDoc = loader.getController();
-          //list.remove(list.get(Integer.parseInt(tfID.getText())));
-          //FXMLDoc.resetList(list);
+          Stage stage = (Stage) cancelBtn.getScene().getWindow();
+          stage.close();
     }
      
     @FXML

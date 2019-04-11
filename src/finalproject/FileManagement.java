@@ -41,13 +41,13 @@ public class FileManagement {
                 while((line = br.readLine())!=null) {
                     String[] record = line.split(",");
                     //Integer itemId = Integer.parseInt(record[0].trim());
-                    String name = record[1].trim();
-                    String type = record[2].trim();
+                    String type = record[1].trim();
+                    String name = record[2].trim();
                     Integer quantity = Integer.parseInt(record[3].trim());
                     Double price = Double.parseDouble(record[4].trim());
                     String fieldSect = record[5].trim();
                     //Crop oldCrop = new Crop(name, type, quantity, price, fieldSect);
-                    a.add(new Crop((a.size()+1), name, type, quantity, price, fieldSect));
+                    a.add(new Crop((a.size()+1),type , name, quantity, price, fieldSect.toUpperCase()));
                 }
                 br.close();
             
@@ -77,8 +77,8 @@ public class FileManagement {
             Crop newCrop = new Crop((b.size()+1), itemName, itemType, itemQuant, itemPrice, itemSect);
       
                 b.add(newCrop);
-            output.println((b.size()+1) + "," + itemName + ","+ itemType + "," + itemQuant + 
-                    "," + itemPrice + "," + fieldSect);
+            output.println((b.size()+1) + ","+ itemType + ","+ itemName + "," + itemQuant + 
+                    "," + itemPrice + "," + fieldSect.toUpperCase());
         
         }catch(FileNotFoundException e){
             System.out.println("File cannot be created " + e);
@@ -102,32 +102,33 @@ public class FileManagement {
         g.remove(g.get(id-1));
         for(Crop d : g){    
         count++;
-        output.println(count + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
-        "," + d.getPricePerPound() + "," + d.getFieldSection());
+        output.println(count + "," + d.getItemType() + "," + d.getItemName() + "," + d.getItemQuantity() + 
+        "," + d.getPricePerPound() + "," + d.getFieldSection().toUpperCase());
         }
             }catch(IOException e){
              System.out.println("error" + e);
              }finally{
-                if (output != null) output.close();
+                if (output != null)
+                    output.close();
             }
             return g;
         }
-        
-        
-        
-        
-        public void itemUpdating(ObservableList<Crop> a, String type, String name, int quantity, double price, String fieldSect){
+ 
+        public void itemUpdating(
+                ObservableList<Crop> a, Crop c, Integer id, String type, 
+                String name, int quantity, double price, String fieldSect){
                 PrintWriter output = null;
             try{
         File file = new File("farmInfo.csv");
         int count1 = 0;
         //output = null;
         output = new PrintWriter(new FileWriter(file, false));
-        //a.set(id-1, a.get());
+        
+        a.set((id-1), c);
         for(Crop d : a){
         count1++;
-        output.println(count1 + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
-        "," + d.getPricePerPound() + "," + d.getFieldSection());
+        output.println(count1 + "," + d.getItemType() + "," + d.getItemName() + "," + d.getItemQuantity() + 
+        "," + d.getPricePerPound() + "," + d.getFieldSection().toUpperCase());
         }
             }catch(IOException e){
              System.out.println("error" + e);

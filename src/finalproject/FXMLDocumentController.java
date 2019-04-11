@@ -7,6 +7,7 @@ package finalproject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -84,6 +86,8 @@ public class FXMLDocumentController implements Initializable {
     private Text sideID;
     @FXML
     private ImageView itemImage;
+    @FXML
+    private Text sideValue;
     
     public void setName(String name) {
        loginName.setText(name);
@@ -142,9 +146,11 @@ public class FXMLDocumentController implements Initializable {
         addBtn.setDisable(true);
         stage.setOnCloseRequest(e -> {
         addBtn.setDisable(false); 
+        showData();
         });
         stage.setOnHidden(e-> {
             addBtn.setDisable(false);
+            showData();
         });
     }
         
@@ -190,8 +196,8 @@ public class FXMLDocumentController implements Initializable {
         delete = loader.getController();
         delete.setAdd(this);
         delBtn.setDisable(true);
-        Crop g = new Crop(1, "g", "h", 5, 6.0, "d");
-        delete.setCrops(g);
+       // Crop g = new Crop(1, "g", "h", 5, 6.0, "d");
+       
         delete.setData(list);
         
         stage.setOnCloseRequest(e -> {
@@ -209,21 +215,44 @@ public class FXMLDocumentController implements Initializable {
 //        
 //     }
     // check the table's selected item and get selected item
-    public Crop getSelected(){
-        Crop f = new Crop(1, "h","g",3,4.1,"h");
+    public void getSelected(){
+     
    if (tableView.getSelectionModel().getSelectedItem() != null){
         Crop selectedCrop = tableView.getSelectionModel().getSelectedItem();
         sideName.setText(selectedCrop.getItemName());
         sideQuantity.setText((selectedCrop.getItemQuantity().toString()));
         sideType.setText(selectedCrop.getItemType());
         sidePrice.setText((selectedCrop.getPricePerPound().toString()));
-        sideFieldSection.setText((selectedCrop.getFieldSection()));
+        sideFieldSection.setText((selectedCrop.getFieldSection().toUpperCase()));
         sideID.setText((selectedCrop.getItemId().toString()));
-        //deleteControl.setData(list);
-       return selectedCrop;
+        DecimalFormat df = new DecimalFormat("#.00");
+        Double val = Integer.parseInt(selectedCrop.getItemQuantity().toString()) * (Double.parseDouble(selectedCrop.getPricePerPound().toString()));
+        sideValue.setText(df.format(val));
+            switch (selectedCrop.getItemType()) {
+                case "Root":
+                    itemImage.setImage(new Image("root.jpg", 200, 200, true, true));
+                    break;
+                case "Fruits":
+                    itemImage.setImage(new Image("fruit.jpg", 200, 200, true, true));
+                    //https://media.mnn.com/assets/images/2016/05/Fresh-fruit-pretty.jpg.653x0_q80_crop-smart.jpg
+                    break;
+                case "Leaves":
+                    itemImage.setImage(new Image("leaf.jpg", 200, 200, true, true));
+                    break;
+                case "Stems":
+                    break;
+                case "Legumes":
+                    itemImage.setImage(new Image("legumes.jpg", 220, 220, true, true));
+                    break;
+                case "Grain":
+                    itemImage.setImage(new Image("grain.jpg", 200, 200, true, true));
+                    break;
+                default:
+                    itemImage.setImage(null);
+                    break;
+            }  
    }    
-        return f;
-        
+       
 }
 //     public void setList(){
 //         this.list=manager.fileReading();
@@ -245,8 +274,8 @@ public class FXMLDocumentController implements Initializable {
         tableView.getItems().clear();
         manager.fileReading(list);
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
-        itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
+        itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         pricePerPound.setCellValueFactory(new PropertyValueFactory<>("pricePerPound"));
         itemQuantity.setCellValueFactory(new PropertyValueFactory<>("itemQuantity"));
         fieldSection.setCellValueFactory(new PropertyValueFactory<>("fieldSection"));

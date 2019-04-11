@@ -28,7 +28,6 @@ public class AddWindowController implements Initializable {
     private Button acptBtn;
     @FXML
     private Button cancelBtn;
-    @FXML
     private TextField tfID;
     @FXML
     private TextField tfName;
@@ -38,8 +37,6 @@ public class AddWindowController implements Initializable {
     @FXML
     private TextField tfPrice;
     @FXML
-    private TextField tfAvailability;
-    @FXML
     private TextField tfSection;
     
     private static FXMLDocumentController FXMLDoc;
@@ -48,7 +45,7 @@ public class AddWindowController implements Initializable {
     Crop selected;
     FileManagement manager = new FileManagement();
     
-    String[] cbArray = {"Root", "Fruits", "Vine", "Plant", "Stems", "Beans", "Leaves"};
+    String[] cbArray = {"Root", "Fruits", "Plant", "Stems", "Legumes", "Leaves", "Grain", "Other"};
     @FXML
     private ComboBox<String> cbType;
     
@@ -64,7 +61,7 @@ public class AddWindowController implements Initializable {
         //doc.list.get(doc.list.size()).setItemId(doc.list.size());
         //tfID.setText(doc.list.get(doc.list.size()).toString());
         cbType.getItems().addAll(cbArray);
-        cbType.setValue("Corn");
+        cbType.setValue("Root");
     }    
     public void setData(ObservableList<Crop> list){ 
        this.list = list;
@@ -74,13 +71,8 @@ public class AddWindowController implements Initializable {
        
             
     manager.fileWriting(list, cbType.getValue(), tfName.getText(),
-            Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
-            tfSection.getText());
-   
-      
-    
-        tfID.setText("");
-       
+        Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
+        tfSection.getText());
         tfName.setText("");
         tfQuantity.setText("");
         tfPrice.setText("");
@@ -93,7 +85,8 @@ public class AddWindowController implements Initializable {
 
     @FXML
     private void cancelBtnHandler(ActionEvent event) {
-       
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
+        stage.close();
     }
     
     void setAdd(FXMLDocumentController aThis) {

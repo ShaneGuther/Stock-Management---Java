@@ -42,11 +42,6 @@
                   <Insets bottom="24.0" left="10.0" right="10.0" top="18.0" />
                </VBox.margin>
             </Label>
-            <Label text="Availability">
-               <VBox.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="4.0" />
-               </VBox.margin>
-            </Label>
             <Label text="Section">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -71,8 +66,8 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </opaqueInsets>
          <children>
-            <ComboBox prefWidth="150.0" />
-            <TextField fx:id="tfType">
+            <ComboBox fx:id="cbType" prefWidth="150.0" />
+            <TextField fx:id="tfName" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -80,7 +75,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="tfQuantity">
+            <TextField fx:id="tfQuantity" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -88,17 +83,12 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="tfPrice">
+            <TextField fx:id="tfPrice" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="tfAvailability">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="tfFieldSection">
+            <TextField fx:id="tfFieldSection" translateY="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

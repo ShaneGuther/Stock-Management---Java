@@ -36,7 +36,7 @@ public class Crop {
 //        this.pricePerPound = pricePerPound;
 //        this.fieldSection = fieldSection;
 //    }    
-    public Crop(Integer itemId, String itemName, String itemType, Integer itemQuantity, Double pricePerPound, String fieldSection){
+    public Crop(Integer itemId, String itemType, String itemName, Integer itemQuantity, Double pricePerPound, String fieldSection){
         this.itemId = new SimpleIntegerProperty(itemId);
         this.itemName = new SimpleStringProperty(itemName);
         this.itemType = new SimpleStringProperty(itemType);
