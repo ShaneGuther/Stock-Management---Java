@@ -63,7 +63,10 @@ public class UpdateWindowController implements Initializable {
     private void acptBtnHandler(ActionEvent event) {
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
-        //manager.itemUpdating(list, Integer.parseInt(tfID.getText()), ;
+        Crop temp = list.get(Integer.parseInt(tfID.getText()));
+        Integer i = Integer.parseInt(tfID.getText());
+        manager.itemUpdating(list, temp.getItemType(), temp.getItemName(), 
+                temp.getItemQuantity(), temp.getPricePerPound(), temp.getFieldSection());
     }
 
     @FXML

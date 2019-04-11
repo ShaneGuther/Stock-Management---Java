@@ -71,7 +71,7 @@ public class DeleteWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     FXMLDoc = FXMLDocumentController.getController();
-    tfName.setText(c.getItemName());
+//    tfName.setText(c.getItemName());
     
     }    
 
