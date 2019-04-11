@@ -146,7 +146,9 @@ public class FXMLDocumentController implements Initializable {
         stage.setOnHidden(e-> {
             addBtn.setDisable(false);
         });
-    
+    }
+
+
         
 
 
@@ -196,7 +198,11 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setOnCloseRequest(e -> {
         delBtn.setDisable(false); 
-           
+        showData();
+        });
+        stage.setOnHidden(e -> {
+        delBtn.setDisable(false); 
+        showData();
         });
     }
     @FXML
@@ -239,7 +245,7 @@ public class FXMLDocumentController implements Initializable {
         //Clear table, read from file and populate tableview with data from the observable list
         
         tableView.getItems().clear();
-        manager.fileReading(list);
+        manager.fileReading();
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
@@ -254,20 +260,8 @@ public class FXMLDocumentController implements Initializable {
 
     public static FXMLDocumentController getController(){
         return controller;
+    }
 }
 
-
- 
-
-
-
-
-    
-
-    
-
-
-    
-    
-        //itemImage.setImage(selectedCrop.getImage());
+//itemImage.setImage(selectedCrop.getImage());
 
