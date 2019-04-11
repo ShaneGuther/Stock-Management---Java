@@ -245,7 +245,7 @@ public class FXMLDocumentController implements Initializable {
         //Clear table, read from file and populate tableview with data from the observable list
         
         tableView.getItems().clear();
-        manager.fileReading();
+        manager.fileReading(list);
         itemID.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         itemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
