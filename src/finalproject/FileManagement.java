@@ -100,7 +100,7 @@ public class FileManagement {
         //output = null;
         output = new PrintWriter(new FileWriter(file, false));
         g.remove(g.get(id-1));
-        for(Crop d : g){
+        for(Crop d : g){    
         count++;
         output.println(count + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
         "," + d.getPricePerPound() + "," + d.getFieldSection());
