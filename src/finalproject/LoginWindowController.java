@@ -64,8 +64,8 @@ public class LoginWindowController implements Initializable {
         adminBtn.setDisable(false); 
            
         });
-//        FXMLDoc.setName("Administrator");
-//        FXMLDoc.setType("Admin: ");
+        FXMLDoc.setName("Administrator");
+        FXMLDoc.setType("Admin: ");
     }
 
     @FXML
@@ -107,15 +107,15 @@ public class LoginWindowController implements Initializable {
             stage.setOnCloseRequest(e -> {
              userBtn.setDisable(false);     
             });
-//            if(result.isEmpty() == true){
-//                FXMLDoc.setName("User");
-//            }else{
-//                FXMLDoc.setName(dialog.getResult());
-//            }
-//            FXMLDoc.setType("User:");
-//            FXMLDoc.disableAddBtn();
-//            FXMLDoc.disableUpdBtn();
-//            FXMLDoc.disableDelBtn();
+            if(result.isEmpty() == true){
+                FXMLDoc.setName("User");
+            }else{
+                FXMLDoc.setName(dialog.getResult());
+            }
+            FXMLDoc.setType("User:");
+            FXMLDoc.disableAddBtn();
+            FXMLDoc.disableUpdBtn();
+            FXMLDoc.disableDelBtn();
             
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR); 

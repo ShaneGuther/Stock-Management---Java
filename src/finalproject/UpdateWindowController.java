@@ -7,8 +7,10 @@ package finalproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -41,19 +43,27 @@ public class UpdateWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfFieldSection;
-
+      FileManagement manager = new FileManagement();
+    private static FXMLDocumentController FXMLDoc;
+    private static UpdateWindowController updDoc;
+    private ObservableList<Crop> list;
+      FXMLLoader loader = new FXMLLoader();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        FXMLDoc = FXMLDocumentController.getController();
     }    
+     public void setData(ObservableList<Crop> list){ 
+        this.list = list;
+    }
 
     @FXML
     private void acptBtnHandler(ActionEvent event) {
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
+        //manager.itemUpdating(list, Integer.parseInt(tfID.getText()), ;
     }
 
     @FXML

@@ -58,7 +58,7 @@ public class FileManagement {
                 }finally{
                 }
     }
-    public void fileWriting(ObservableList b, String name, String type, int quantity, double price, String fieldSect){
+    public void fileWriting(ObservableList b, String type, String name, int quantity, double price, String fieldSect){
         //Scanner input = new Scanner(System.in);
         //ArrayList<Student> studentList = new ArrayList<>();
         //1. create file object
@@ -69,8 +69,8 @@ public class FileManagement {
         try{
             output = new PrintWriter(new FileWriter(file, true));
             //Integer itemId = id;
-            String itemName = name;
             String itemType = type;
+            String itemName = name;
             Integer itemQuant = quantity;       
             Double itemPrice = price;
             String itemSect = fieldSect;
@@ -92,8 +92,6 @@ public class FileManagement {
                 output.close();
         }
     }
-//    public void itemDeleting(ObservableList a, Integer id, String name, String type, Integer quantity, Double price, String fieldSect){
-//        Crop toBeDeleted = new Crop(id, name, type, quantity, price, fieldSect);
         public ObservableList itemDeleting(ObservableList<Crop> g, Integer id){
             PrintWriter output = null;
             try{
@@ -114,6 +112,31 @@ public class FileManagement {
             }
             return g;
         }
-}
+        
+        
+        
+        
+        public void itemUpdating(ObservableList<Crop> a, String type, String name, int quantity, double price, String fieldSect){
+                PrintWriter output = null;
+            try{
+        File file = new File("farmInfo.csv");
+        int count1 = 0;
+        //output = null;
+        output = new PrintWriter(new FileWriter(file, false));
+        //a.set(id-1, a.get());
+        for(Crop d : a){
+        count1++;
+        output.println(count1 + "," + d.getItemName() + ","+ d.getItemType() + "," + d.getItemQuantity() + 
+        "," + d.getPricePerPound() + "," + d.getFieldSection());
+        }
+            }catch(IOException e){
+             System.out.println("error" + e);
+             }finally{
+                if (output != null) output.close();
+            }
+        
+        }
+        }
+
 
        

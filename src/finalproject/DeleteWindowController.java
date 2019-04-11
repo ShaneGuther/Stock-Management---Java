@@ -49,7 +49,7 @@ public class DeleteWindowController implements Initializable {
     
     FileManagement manager = new FileManagement();
     ObservableList<Crop> list;
-    
+    Crop c;
     FXMLLoader loader = new FXMLLoader();
     @FXML
     private static FXMLDocumentController FXMLDoc;
@@ -60,6 +60,9 @@ public class DeleteWindowController implements Initializable {
     public void setData(ObservableList<Crop> list){ 
         this.list = list;
     }
+    public void setCrops(Crop c){
+        this.c = c;
+    }
  
 
     /**
@@ -68,9 +71,7 @@ public class DeleteWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     FXMLDoc = FXMLDocumentController.getController();
-    //FXMLDoc = loader.getController();
-//    FXMLDoc.setAdd(this);
-    //list2 = FXMLDoc.getList();
+    tfName.setText(c.getItemName());
     
     }    
 

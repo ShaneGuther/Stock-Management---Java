@@ -8,6 +8,7 @@ package finalproject;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,44 +41,52 @@ public class AddWindowController implements Initializable {
     private TextField tfAvailability;
     @FXML
     private TextField tfSection;
-    private FXMLDocumentController doc = new FXMLDocumentController();
     
+    private static FXMLDocumentController FXMLDoc;
+    private static AddWindowController addCon;
+    ObservableList<Crop> list;
+    Crop selected;
     FileManagement manager = new FileManagement();
+    
     String[] cbArray = {"Root", "Fruits", "Vine", "Plant", "Stems", "Beans", "Leaves"};
     @FXML
     private ComboBox<String> cbType;
     
     
-
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        FXMLDoc = FXMLDocumentController.getController();
         //doc.list.get(doc.list.size()).setItemId(doc.list.size());
         //tfID.setText(doc.list.get(doc.list.size()).toString());
         cbType.getItems().addAll(cbArray);
         cbType.setValue("Corn");
     }    
-
+    public void setData(ObservableList<Crop> list){ 
+       this.list = list;
+    }
     @FXML
     private void acptBtnHandler(ActionEvent event) {
-        try{
-    manager.fileWriting(doc.list, cbType.getValue(), tfName.getText(),
+       
+            
+    manager.fileWriting(list, cbType.getValue(), tfName.getText(),
             Integer.parseInt(tfQuantity.getText()), Double.parseDouble(tfPrice.getText()), 
             tfSection.getText());
-    }catch(Exception e){
-        System.out.println("Error Occurred" + e);
-    }finally{
+   
+      
+    
         tfID.setText("");
-        tfName.setText(""); 
-        tfType.setText("");
+       
+        tfName.setText("");
         tfQuantity.setText("");
         tfPrice.setText("");
         tfSection.setText("");
         
-        }
+        
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
     }
@@ -89,6 +98,10 @@ public class AddWindowController implements Initializable {
     
     void setAdd(FXMLDocumentController aThis) {
         
+    }
+     public static AddWindowController getControllerThree(){
+        
+        return addCon;
     }
     
 }
